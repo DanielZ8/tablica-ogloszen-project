@@ -19,66 +19,24 @@
             </form>
         </div>
         <main class="content2">
-            <a href="{{ url('/ogloszenie') }}" class="job-offer">
-                <div class="span-job-offer-img"><img class="job-offer-img" src="img/firma4.png"/></div>
-                <div class="job-offer-wrapper">
-                    <h2 class="job-offer-title">Firma SemiSoft - Programista Python</h2>
-                    <p class="job-offer-category"><img src="img/python.png"/>Python</p>
-                    <p class="job-offer-salary"><img src="img/cash.png"/>6000zł/miesiąc</p>
-                    <p class="job-offer-location"><img src="img/location.png"/>Kraków</p>
-                    <p class="job-offer-description">Poszukujemy doświadczonego programisty Python do pracy nad projektami dla klientów z branży finansowej.</p>
-                </div>
-            </a>
-            <a href="{{ url('/ogloszenie') }}" class="job-offer">
-                <div class="span-job-offer-img"><img class="job-offer-img" src="img/firma1.png"/></div>
-                <div class="job-offer-wrapper">
-                    <h2 class="job-offer-title">GamingSpec - Programista C++</h2>
-                    <p class="job-offer-category"><img src="img/cplus.png"/>C++</p>
-                    <p class="job-offer-salary"><img src="img/cash.png"/>8200zł/miesiąc</p>
-                    <p class="job-offer-location"><img src="img/location.png"/>Online</p>
-                    <p class="job-offer-description">Poszukujemy junior programisty C++ do pracy nad projektami z braży gier.</p>
-                </div>
-            </a>
-            <a href="{{ url('/ogloszenie') }}" class="job-offer">
-                <div class="span-job-offer-img"><img class="job-offer-img" src="img/firma3.png"/></div>
-                <div class="job-offer-wrapper">
-                    <h2 class="job-offer-title">WebDev - Programista PHP</h2>
-                    <p class="job-offer-category"><img src="img/php.png"/>PHP</p>
-                    <p class="job-offer-salary"><img src="img/cash.png"/>7200zł/miesiąc</p>
-                    <p class="job-offer-location"><img src="img/location.png"/>Online</p>
-                    <p class="job-offer-description">Frima WebDev pilnie poszukuje programisty PHP do pracy nad projektami z zakresu aplikacji webowych.</p>
-                </div>
-            </a>
-            <a href="{{ url('/ogloszenie') }}" class="job-offer">
-                <div class="span-job-offer-img"><img class="job-offer-img" src="img/firma4.png"/></div>
-                <div class="job-offer-wrapper">
-                    <h2 class="job-offer-title">Firma SemiSoft - Programista Python</h2>
-                    <p class="job-offer-category"><img src="img/python.png"/>Python</p>
-                    <p class="job-offer-salary"><img src="img/cash.png"/>6000zł/miesiąc</p>
-                    <p class="job-offer-location"><img src="img/location.png"/>Kraków</p>
-                    <p class="job-offer-description">Poszukujemy doświadczonego programisty Python do pracy nad projektami dla klientów z branży finansowej.</p>
-                </div>
-            </a>
-            <a href="{{ url('/ogloszenie') }}" class="job-offer">
-                <div class="span-job-offer-img"><img class="job-offer-img" src="img/firma1.png"/></div>
-                <div class="job-offer-wrapper">
-                    <h2 class="job-offer-title">GamingSpec - Programista C++</h2>
-                    <p class="job-offer-category"><img src="img/cplus.png"/>C++</p>
-                    <p class="job-offer-salary"><img src="img/cash.png"/>8200zł/miesiąc</p>
-                    <p class="job-offer-location"><img src="img/location.png"/>Online</p>
-                    <p class="job-offer-description">Poszukujemy junior programisty C++ do pracy nad projektami z braży gier.</p>
-                </div>
-            </a>
-            <a href="{{ url('/ogloszenie') }}" class="job-offer">
-                <div class="span-job-offer-img"><img class="job-offer-img" src="img/firma3.png"/></div>
-                <div class="job-offer-wrapper">
-                    <h2 class="job-offer-title">WebDev - Programista PHP</h2>
-                    <p class="job-offer-category"><img src="img/php.png"/>PHP</p>
-                    <p class="job-offer-salary"><img src="img/cash.png"/>7200zł/miesiąc</p>
-                    <p class="job-offer-location"><img src="img/location.png"/>Online</p>
-                    <p class="job-offer-description">Frima WebDev pilnie poszukuje programisty PHP do pracy nad projektami z zakresu aplikacji webowych.</p>
-                </div>
-            </a>  
+            @if ($ogloszenia -> count())
+                @foreach ($ogloszenia as $ogloszenie)
+                    <a href="{{ url('/ogloszenie') }}" class="job-offer">
+                        <div class="span-job-offer-img"><img class="job-offer-img" src="{{ $ogloszenie -> user -> photo}}"/></div>
+                        <div class="job-offer-wrapper">
+                            <h2 class="job-offer-title">
+                                {{$ogloszenie -> user -> nazwa_firmy }} - {{$ogloszenie -> naglowek}}
+                            </h2>
+                            <p class="job-offer-category"><img src="img/{{ $ogloszenie -> kategoria}}.png"/>{{ $ogloszenie -> kategoria}}</p>
+                            <p class="job-offer-salary"><img src="img/cash.png"/>{{ $ogloszenie -> stawka}}zł/miesiąc</p>
+                            <p class="job-offer-location"><img src="img/location.png"/>{{ $ogloszenie -> lokalizacja}}</p>
+                            <p class="job-offer-description">{{ $ogloszenie -> opis}}</p>
+                        </div>
+                    </a>
+                @endforeach  
+            @else
+                <h1>Brak ogłoszeń</h1>
+            @endif
         </main>
     </div>
 @endsection

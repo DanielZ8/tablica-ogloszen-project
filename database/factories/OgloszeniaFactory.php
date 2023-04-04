@@ -20,7 +20,7 @@ class OgloszeniaFactory extends Factory
         static $number = 1;
         return [
             'naglowek' => fake()->jobTitle(),
-            'kategoria' => 'Java',
+            'kategoria' => 'Python',
             'stawka' => fake()->numberBetween(6000, 15000),
             'lokalizacja' => fake()->city(),
             'wymagania' => 'wymagania',

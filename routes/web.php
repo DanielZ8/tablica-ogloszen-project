@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OgloszeniaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,9 +52,7 @@ Route::get('/employee', function () {
 });
 
 //OGLOSZENIA
-Route::get('/ogloszenia', function(){
-    return view('ogloszenia/ogloszenia_main');
-});
+Route::get('/ogloszenia', [OgloszeniaController::class, 'show']) -> name ('ogloszenia');
 
 Route::get('/ogloszenie', function(){
     return view('ogloszenia/ogloszenie');
