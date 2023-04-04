@@ -58,6 +58,19 @@ header{
   margin: 0px 0px 0px 0px;
 }
 
+#logo-link
+{
+  display: flex;
+  flex-direction: row;
+}
+.logo-header
+{
+  align-self: center;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 10px;
+}
+
 .logo{
   color: var(--color0);
   font-size: 1.7rem;
