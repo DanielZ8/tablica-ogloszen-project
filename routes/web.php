@@ -13,6 +13,63 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//STRONA GLOWNA
 Route::get('/', function () {
     return view('welcome');
+});
+
+//LOGIN
+Route::get('/login', function () {
+    return view('auth/login');
+});
+
+//REGISTER
+Route::get('/register', function () {
+    return view('auth/register');
+});
+
+//COMPANY_PANNEL
+Route::get('/company', function () {
+    return view('company/company_info');
+});
+
+Route::get('/company/add', function () {
+    return view('company/company_add_ogloszenie');
+});
+
+Route::get('/company/active', function () {
+    return view('company/company_active_ogloszenie');
+});
+
+Route::get('/company/zgloszenia', function () {
+    return view('company/company_zgloszenia');
+});
+
+//EMPLOYEE_PANEL
+Route::get('/employee', function () {
+    return view('employee/employee_info');
+});
+
+//OGLOSZENIA
+Route::get('/ogloszenia', function(){
+    return view('ogloszenia/ogloszenia_main');
+});
+
+Route::get('/ogloszenie', function(){
+    return view('ogloszenia/ogloszenie');
+});
+
+//CLIENT_PANNEL
+Route::get('/client', function () {
+    return view('company/company_info');
+});
+
+//AKTUALNOSCI
+Route::get('/aktualnosci', function () {
+    return view('aktualnosci');
+});
+
+//O_NAS
+Route::get('/onas', function () {
+    return view('onas');
 });
