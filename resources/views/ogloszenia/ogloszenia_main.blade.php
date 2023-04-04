@@ -33,7 +33,8 @@
                             <p class="job-offer-description">{{ $ogloszenie -> opis}}</p>
                         </div>
                     </a>
-                @endforeach  
+                @endforeach
+                {{$ogloszenia ->links("pagination::semantic-ui")}}  
             @else
                 <h1>Brak ogłoszeń</h1>
             @endif

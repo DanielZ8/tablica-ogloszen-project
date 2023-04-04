@@ -9,7 +9,7 @@ class OgloszeniaController extends Controller
 {
     public function show()
     {
-        $ogloszenia = Ogloszenia::all();
+        $ogloszenia = Ogloszenia::paginate(10);
         return view('ogloszenia/ogloszenia_main',[
             'ogloszenia' => $ogloszenia
         ]);

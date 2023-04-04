@@ -24,7 +24,7 @@ class OgloszeniaFactory extends Factory
             'stawka' => fake()->numberBetween(6000, 15000),
             'lokalizacja' => fake()->city(),
             'wymagania' => 'wymagania',
-            'opis' => fake()->sentence(),
+            'opis' => fake()->catchPhrase() ,
             'status' => 'aktualne',
             'user_id' => $number++,
         ];

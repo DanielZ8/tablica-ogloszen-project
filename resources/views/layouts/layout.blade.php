@@ -11,7 +11,7 @@
     <div class="main-layout">
         <div class="empty"></div>
         <header>
-            <a id="logo-link" href="{{ url('/') }}"><img class="logo-header" src="img/logo-bright.png"><h2 class="logo">Tablica<span class="logo-color">Ogłoszeń</span></h2></a>
+            <a id="logo-link" href="{{ url('/') }}"><img class="logo-header" src="{{ asset ('img/logo-bright.png') }}"><h2 class="logo">Tablica<span class="logo-color">Ogłoszeń</span></h2></a>
 
             <ul class="navbar">
                 <li><a href="{{ url('/ogloszenia') }}">Ogłoszenia</a></li>
