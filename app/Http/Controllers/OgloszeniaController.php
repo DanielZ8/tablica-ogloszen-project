@@ -7,11 +7,20 @@ use App\Models\Ogloszenia;
 
 class OgloszeniaController extends Controller
 {
-    public function show()
+    public function index()
     {
-        $ogloszenia = Ogloszenia::paginate(10);
+        $ogloszenia = Ogloszenia::latest()->paginate(10);
         return view('ogloszenia/ogloszenia_main',[
             'ogloszenia' => $ogloszenia
+        ]);
+    }
+
+    public function show($id)
+    {
+        $ogloszenie = Ogloszenia::find($id);
+
+       return view('ogloszenia.ogloszenie', [
+            'ogloszenie' => $ogloszenie
         ]);
     }
 }

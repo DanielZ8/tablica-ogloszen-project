@@ -21,7 +21,7 @@
         <main class="content2">
             @if ($ogloszenia -> count())
                 @foreach ($ogloszenia as $ogloszenie)
-                    <a href="{{ url('/ogloszenie') }}" class="job-offer">
+                    <a href=" {{ route('ogloszenie', $ogloszenie -> id) }}  " class="job-offer">
                         <div class="span-job-offer-img"><img class="job-offer-img" src="{{ $ogloszenie -> user -> photo}}"/></div>
                         <div class="job-offer-wrapper">
                             <h2 class="job-offer-title">

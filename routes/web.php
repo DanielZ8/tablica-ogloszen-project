@@ -52,12 +52,13 @@ Route::get('/employee', function () {
 });
 
 //OGLOSZENIA
-Route::get('/ogloszenia', [OgloszeniaController::class, 'show']) -> name ('ogloszenia');
+Route::get('/ogloszenia', [OgloszeniaController::class, 'index']) -> name ('ogloszenia');
+Route::get('/ogloszenie/{id}', [OgloszeniaController::class, 'show']) -> name ('ogloszenie');
 
-Route::get('/ogloszenie', function(){
+/* Route::get('/ogloszenie', function(){
     return view('ogloszenia/ogloszenie');
 });
-
+ */
 //CLIENT_PANNEL
 Route::get('/client', function () {
     return view('company/company_info');
