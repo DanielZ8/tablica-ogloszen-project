@@ -2,32 +2,58 @@
 @section('company_item')
     <div class="company-add-advert">
         <h1>Dodaj ogłoszenie</h1>
-        <form>
+        <form action="add" method="POST">
+            @csrf
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li style="color: green;">{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
             <div class="company-info-item">
                 <h2>Nagłówek</h2>
-                <input class="company-form-item" type="text" placeholder="Wpisz nagłówek" name="search">
+                <input class="company-form-item" type="text" placeholder="Wpisz nagłówek" name="naglowek">
             </div>
-            <div class="company-info-item"><h2>Kategoria</h2>
-                <select class="company-form-item">
-                    <option>Java</option>
-                    <option>C++</option>
-                    <option>HTML</option>
+            @error('naglowek')
+                    <p style="color: red;">{{ $message }}</p>
+            @enderror
+            <div class="company-info-item">
+                <h2>Kategoria</h2>
+                <select class="company-form-item" name="kategoria">
+                    <option value="Java">Java</option>
+                    <option value="C++">C++</option>
+                    <option value="HTML">HTML</option>
                 </select></div>
             <div class="company-info-item">
                 <h2>Stawka miesięczna</h2>
-                <input class="company-form-item" type="text" placeholder="Wpisz stawkę miesięczną" name="search">
+                <input class="company-form-item" type="text" placeholder="Wpisz stawkę miesięczną" name="stawka">
             </div>
+            @error('stawka')
+                    <p style="color: red;">{{ $message }}</p>
+            @enderror
             <div class="company-info-item">
                 <h2>Lokalizacja (jeśli praca jest zdalna wpisz ONLINE)</h2>
-                <input class="company-form-item" type="text" placeholder="Wpisz lokalizację" name="search">
+                <input class="company-form-item" type="text" placeholder="Wpisz lokalizację" name="lokalizacja">
             </div>
-            <div class="company-info-item"><h2>Wymagania</h2>
-                <textarea placeholder="Napisz wiadmość do pracodawcy..."></textarea>
+            @error('lokalizacja')
+                    <p style="color: red;">{{ $message }}</p>
+            @enderror
+            <div class="company-info-item">
+                <h2>Wymagania</h2>
+                <textarea placeholder="Wymagania" name="wymagania"></textarea>
             </div>
+            @error('wymagania')
+                    <p style="color: red;">{{ $message }}</p>
+            @enderror
+
             <div class="company-info-item"><h2>Opis</h2>
-                <textarea placeholder="Napisz wiadmość do pracodawcy..."></textarea>
+                <textarea placeholder="Opis" name="opis"></textarea>
             </div>
-            <button class="company-button" type="submit" onclick="alert('Tu będzie funckja dodawania ogłoszenia')">Dodaj ogłoszenie</button>
+            @error('opis')
+                    <p style="color: red;">{{ $message }}</p>
+            @enderror
+            <button class="company-button" type="submit">Dodaj ogłoszenie</button>
         </form>
     </div>
 @endsection

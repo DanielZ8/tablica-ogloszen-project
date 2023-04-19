@@ -37,6 +37,7 @@ Route::get('/company', function () {
 Route::get('/company/add', function () {
     return view('company/company_add_ogloszenie');
 });
+Route::post('/company/add', [OgloszeniaController::class, 'store']);
 
 Route::get('/company/active', function () {
     return view('company/company_active_ogloszenie');
@@ -54,6 +55,7 @@ Route::get('/employee', function () {
 //OGLOSZENIA
 Route::get('/ogloszenia', [OgloszeniaController::class, 'index']) -> name ('ogloszenia');
 Route::get('/ogloszenie/{id}', [OgloszeniaController::class, 'show']) -> name ('ogloszenie');
+
 
 /* Route::get('/ogloszenie', function(){
     return view('ogloszenia/ogloszenie');

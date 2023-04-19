@@ -23,4 +23,28 @@ class OgloszeniaController extends Controller
             'ogloszenie' => $ogloszenie
         ]);
     }
+    public function store(Request $request)
+    {
+         $formFields = $request->validate([
+            'naglowek' => 'required',
+            'kategoria' => 'required',
+            'stawka' => 'required',
+            'lokalizacja' => 'required',
+            'wymagania' => 'required',
+            'opis' => 'required',
+         ]);
+        
+        $ogloszenie = new Ogloszenia;
+        $ogloszenie->user_id = 1;
+        $ogloszenie->naglowek = $request->naglowek;
+        $ogloszenie->kategoria = $request->kategoria;
+        $ogloszenie->stawka = $request->stawka;
+        $ogloszenie->lokalizacja = $request->lokalizacja;
+        $ogloszenie->wymagania = $request->wymagania;
+        $ogloszenie->opis = $request->opis;
+        $ogloszenie->status = "aktualne";
+        $ogloszenie->save(); 
+
+        return redirect('company/add')->with('success', 'Ogloszenie dodano pomyślnie!');
+    }
 }
