@@ -47,4 +47,24 @@ class OgloszeniaController extends Controller
 
         return redirect('company/add')->with('success', 'Ogloszenie dodano pomyślnie!');
     }
+
+    public function search(Request $request)
+    {
+        $ogloszenia = Ogloszenia::
+        where(function($query) use($request){
+            $query->orwhere('naglowek', 'LIKE', '%'.$request->search.'%') #wyszukuje kawalki stringow
+            ->orwhere('opis', 'LIKE', '%'.$request->search.'%')
+            ->orwhereHas('user', function($query) use($request){
+                $query->where('nazwa_firmy', 'LIKE', '%'.$request->search.'%');  #w relacji do users
+            });
+        })
+        ->where('kategoria', 'LIKE', $request->kategoria.'%')
+        ->where('stawka', '>', $request->stawka.'%')
+        ->where('lokalizacja', 'LIKE', $request->lokalizacja.'%')
+        ->latest()
+        ->paginate(10);
+        return view('ogloszenia/ogloszenia_main',[
+            'ogloszenia' => $ogloszenia
+        ]);
+    }
 }

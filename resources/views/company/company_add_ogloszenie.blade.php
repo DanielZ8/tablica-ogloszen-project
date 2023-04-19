@@ -22,8 +22,9 @@
                 <h2>Kategoria</h2>
                 <select class="company-form-item" name="kategoria">
                     <option value="Java">Java</option>
-                    <option value="C++">C++</option>
-                    <option value="HTML">HTML</option>
+                    <option value="CPP">CPP(C++)</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Python">Python</option>
                 </select></div>
             <div class="company-info-item">
                 <h2>Stawka miesięczna</h2>
