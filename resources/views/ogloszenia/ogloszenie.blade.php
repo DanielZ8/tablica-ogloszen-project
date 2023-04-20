@@ -3,19 +3,18 @@
     <div class="ads-main-container">
         <div id="sidebar">
             <h1>Wyszukaj ogłoszenia</h1>
-            <form class="sidebar-form">
-                <input class="form-item" type="text" placeholder="Search.." name="search">
-                <select class="form-item">
-                    <option>Java</option>
-                    <option>C++</option>
-                    <option>HTML</option>
+            <form action="{{ route('search_ogloszenia') }}" class="sidebar-form" method="GET">
+                <input class="form-item" type="search" placeholder="Słowo klucz" name="search">
+                <select class="form-item" name="kategoria">
+                    <option value="">Kategoria</option>
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                    <option value="PHP">PHP</option>
+                    <option value="CPP">CPP(C++)</option>
                 </select>
-                <select class="form-item">
-                    <option>Opcja 1</option>
-                    <option>Opcja 2</option>
-                    <option>Opcja 3</option>
-                </select>
-                <button type="submit" onclick="alert('Tu będzie wyszukiwanie')">Wyszukaj</button>
+                <input class="form-item" type="number" placeholder="Stawka od" name="stawka">
+                <input class="form-item" type="text" placeholder="Lokalizacja" name="lokalizacja">
+                <button type="submit">Wyszukaj</button>
             </form>
         </div>
         <main class="content3">
