@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'password' => 'required|confirmed',
         ]);
 
-        $photo_id = rand(1,200);
+        $photo_id = rand(1,50);
 
         User::create([
             'imie' => $request->imie,
@@ -37,7 +37,7 @@ class RegisterController extends Controller
             'opis' => 'REGISTER TEST',
             'nazwa_firmy' => 'REGISTER TEST',
           ]);
-
+          
           auth()->attempt($request->only('email', 'password'));
           return redirect()->route('ogloszenia');
     }

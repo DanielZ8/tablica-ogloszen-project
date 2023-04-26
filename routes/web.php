@@ -23,13 +23,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//LOGIN
-Route::get('/login', [LoginController::class, 'index']) -> name('login');
-Route::post('/login', [LoginController::class, 'store']);
+Route::group(['middleware' => ['guest']], function () {
+    //only guest users can access these routes
 
-//REGISTER
-Route::get('/register', [RegisterController::class, 'index']) -> name('register') ;
-Route::post('/register', [RegisterController::class, 'store']);
+    //LOGIN
+    Route::get('/login', [LoginController::class,  'index']) -> name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+
+    //REGISTER
+    Route::get('/register', [RegisterController::class, 'index']) -> name('register') ;
+    Route::post('/register', [RegisterController::class, 'store']);
+});
+
 
 //LOGOUT
 Route::post('/logout', [LogoutController::class, 'logout']) -> name('logout');
