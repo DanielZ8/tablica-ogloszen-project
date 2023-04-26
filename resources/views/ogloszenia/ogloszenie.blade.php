@@ -40,6 +40,13 @@
                     {{ $ogloszenie -> opis}}
                     </p>
                 </div>
+                @guest
+                <div class="ad-offer-item5">
+                    <h3>Aby wysłać zgłoszenie zaloguj lub zarejestruj się!</h3> 
+                </div>
+                @endguest
+                @auth
+                @can('pracownik')
                 <div class="ad-offer-item5">
                     <h3>Wyślij zgłoszenie</h3>
                     <form class="ad-offer-form">
@@ -47,6 +54,8 @@
                         <button type="submit" onclick="alert('Tu będzie funckja aplikowania')">Aplikuj</button>
                     </form> 
                 </div>
+                @endcan
+                @endauth
             </div>    
         </main>
     </div>

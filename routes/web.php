@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OgloszeniaController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Panels\CompanyPanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,53 +24,42 @@ Route::get('/', function () {
 });
 
 //LOGIN
-Route::get('/login', function () {
-    return view('auth/login');
-});
+Route::get('/login', [LoginController::class, 'index']) -> name('login');
+Route::post('/login', [LoginController::class, 'store']);
 
 //REGISTER
-Route::get('/register', function () {
-    return view('auth/register');
-});
+Route::get('/register', [RegisterController::class, 'index']) -> name('register') ;
+Route::post('/register', [RegisterController::class, 'store']);
+
+//LOGOUT
+Route::post('/logout', [LogoutController::class, 'logout']) -> name('logout');
+
 
 //COMPANY_PANNEL
-Route::get('/company', function () {
-    return view('company/company_info');
-});
+Route::get('/company', [CompanyPanelController::class, 'private']) -> name ('inf') -> can('firma');
 
 Route::get('/company/add', function () {
     return view('company/company_add_ogloszenie');
-});
+}) -> can('firma');
 
-Route::post('/company/add', [OgloszeniaController::class, 'store']);
+Route::post('/company/add', [OgloszeniaController::class, 'store']) -> can('firma'); 
 
-Route::get('/company/active', function () {
-    return view('company/company_active_ogloszenie');
-});
+Route::get('/company/active', [CompanyPanelController::class, 'index']) -> name ('active') -> can('firma');
 
 Route::get('/company/zgloszenia', function () {
     return view('company/company_zgloszenia');
-});
+}) -> can('firma');
 
 //EMPLOYEE_PANEL
 Route::get('/employee', function () {
     return view('employee/employee_info');
-});
+}) -> can('pracownik');
 
 //OGLOSZENIA
 Route::get('/ogloszenia', [OgloszeniaController::class, 'index']) -> name ('ogloszenia');
 Route::get('/ogloszenia/search', [OgloszeniaController::class, 'search']) -> name ('search_ogloszenia');
 Route::get('/ogloszenie/{id}', [OgloszeniaController::class, 'show']) -> name ('ogloszenie');
 
-
-/* Route::get('/ogloszenie', function(){
-    return view('ogloszenia/ogloszenie');
-});
- */
-//CLIENT_PANNEL
-Route::get('/client', function () {
-    return view('company/company_info');
-});
 
 //AKTUALNOSCI
 Route::get('/aktualnosci', function () {

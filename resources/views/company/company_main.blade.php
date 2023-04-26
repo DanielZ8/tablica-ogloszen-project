@@ -1,5 +1,11 @@
 @extends('layouts.layout')
 @section('content')
+    @guest
+        <div class="company-main-container">
+            TESTOWANIE
+        </div>
+    @endguest
+    @auth
     <div class="company-main-container">
         <div class="company-nav">
             <a href="#"><h1>Panel Firmy</h1></a>
@@ -12,4 +18,5 @@
             @yield('company_item')
         </div>
     </div>
+    @endauth
 @endsection

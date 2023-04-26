@@ -35,7 +35,7 @@ class OgloszeniaController extends Controller
          ]);
         
         $ogloszenie = new Ogloszenia;
-        $ogloszenie->user_id = 1;
+        $ogloszenie->user_id = auth()->user()->id;
         $ogloszenie->naglowek = $request->naglowek;
         $ogloszenie->kategoria = $request->kategoria;
         $ogloszenie->stawka = $request->stawka;
