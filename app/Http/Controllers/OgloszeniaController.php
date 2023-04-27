@@ -25,6 +25,16 @@ class OgloszeniaController extends Controller
     }
     public function store(Request $request)
     {
+        if (auth()->user()->photo == null 
+        || auth()->user()->nazwa_firmy == null 
+        || auth()->user()->imie == null 
+        || auth()->user()->nazwisko == null 
+        || auth()->user()->opis == null)
+        {
+            return redirect('company/info-update')->with('error_add', 'Aby móc dodać ogłoszenie uzupełnij profil!');
+        }
+        else
+        {
          $formFields = $request->validate([
             'naglowek' => 'required',
             'kategoria' => 'required',
@@ -46,6 +56,7 @@ class OgloszeniaController extends Controller
         $ogloszenie->save(); 
 
         return redirect('company/add')->with('success', 'Ogloszenie dodano pomyślnie!');
+        }
     }
 
     public function search(Request $request)

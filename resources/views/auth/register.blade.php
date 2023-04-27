@@ -5,14 +5,6 @@
             <h1 class="form-global-title">Zarejestruj się</h1>
             <form class="form-global" action="{{ route('register') }}" method="post">
                 @csrf
-                @error('imie')
-                    <p style="color: red; margin:0; padding: 0;">{{ $message }}</p>
-                @enderror
-                <input class="form-global-item" type="text" placeholder="Imie" name="imie" value="{{ old('imie') }}">
-                @error('nazwisko')
-                    <p style="color: red; margin:0; padding: 0;">{{ $message }}</p>
-                @enderror
-                <input class="form-global-item" type="text" placeholder="Nazwisko" name="nazwisko" value="{{ old('nazwisko') }}">
                 @error('email')
                     <p style="color: red; margin:0; padding: 0;">{{ $message }}</p>
                 @enderror

@@ -2,12 +2,15 @@
 @section('employee_item')
     <div class="panel-section">
         <h1 class="panel-section-h1">Informacje o profilu</h1>
-            <button class="button-global-dark">Edytuj informacje</button> 
+            <a href="{{ url('/employee/info-update') }}"><button class="button-global-dark">Edytuj informacje</button><a>
+            @if(!auth()->user()->photo == null)
+            <a href="{{ url('/employee/logo-update') }}"><button class="button-global-dark">Zmień Avatar</button><a>
+            @endif
             <button class="button-global-dark">Zmień hasło</button> 
             <button class="button-global-dark">Zmień email</button> 
         <div class="panel-item">
             <h2 class="panel-item-h2">Avatar</h2>
-            <img class="card-img" src="{{ auth()->user()->photo}}"/>
+            <img class="card-img" src="{{ asset (auth()-> user() -> photo)}}"/>
         </div>
         <div class="panel-item">
             <h2 class="panel-item-h2">Imie</h2>

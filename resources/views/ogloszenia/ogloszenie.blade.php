@@ -20,7 +20,7 @@
         <main class="panel-card-container">
             <div class="panel-card-wrapper">
                 <div class="panel-card-big-header">
-                    <img src="{{ $ogloszenie -> user -> photo}}"/>
+                    <img src="{{ asset ($ogloszenie -> user -> photo)}}"/>
                     <h1>{{$ogloszenie -> user -> nazwa_firmy }} - {{$ogloszenie -> naglowek}}</h1>
                 </div>
                 <div class="panel-card-items">

@@ -6,7 +6,7 @@
             @if ($ogloszenia -> count())
                 @foreach ($ogloszenia as $ogloszenie)
                     <a href=" {{ route('ogloszenie', $ogloszenie -> id) }}  " class="card">
-                        <div class="span-card-img"><img class="card-img" src="{{ $ogloszenie -> user -> photo}}"/></div>
+                        <div class="span-card-img"><img class="card-img" src="{{ asset (auth()-> user() -> photo)}}"/></div>
                         <div class="card-wrapper">
                             <h2 class="card-title">
                                 {{$ogloszenie -> user -> nazwa_firmy }} - {{$ogloszenie -> naglowek}}

@@ -5,7 +5,7 @@ use App\Http\Controllers\OgloszeniaController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Panels\CompanyPanelController;
+use App\Http\Controllers\Panels\PanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,28 +41,38 @@ Route::post('/logout', [LogoutController::class, 'logout']) -> name('logout');
 
 
 //COMPANY_PANNEL
-Route::get('/company', [CompanyPanelController::class, 'private']) -> name ('inf') -> can('firma');
+Route::get('/company', [PanelController::class, 'private']) -> name ('inf') -> can('firma');
 
-Route::get('/company/add', function () {
-    return view('company/company_add_ogloszenie');
-}) -> can('firma');
+Route::get('/company/add', [PanelController::class, 'index_company_add']) -> name ('company_add') -> can('firma');
 
 Route::post('/company/add', [OgloszeniaController::class, 'store']) -> can('firma'); 
 
 Route::get('/company/info-update', function () {
     return view('company/company_info_update');
 })-> can('firma');
+Route::post('/company/info-update', [PanelController::class, 'store']) -> name('company-info-update') -> can('firma');
 
-Route::get('/company/active', [CompanyPanelController::class, 'index']) -> name ('active') -> can('firma');
 
-Route::get('/company/zgloszenia', function () {
-    return view('company/company_zgloszenia');
-}) -> can('firma');
+Route::get('/company/logo-update', [PanelController::class, 'index_logo_update']) -> name('company-logo-update') -> can('firma');
+Route::post('/company/logo-update', [PanelController::class, 'store_logo']) -> can('firma');
+
+Route::get('/company/active', [PanelController::class, 'index']) -> name ('active') -> can('firma');
+
+Route::get('/company/zgloszenia', [PanelController::class, 'index_company_zgloszenia']) -> name ('company_zgloszenia') -> can('firma');
+
 
 //EMPLOYEE_PANEL
 Route::get('/employee', function () {
     return view('employee/employee_info');
 }) -> can('pracownik');
+
+Route::get('/employee/info-update', function () {
+    return view('employee/employee_info_update');
+})-> can('pracownik');
+Route::post('/employee/info-update', [PanelController::class, 'store']) -> name('employee-info-update') -> can('pracownik');
+
+Route::get('/employee/logo-update', [PanelController::class, 'index_logo_update']) -> name('employee-logo-update') -> can('pracownik');
+Route::post('/employee/logo-update', [PanelController::class, 'store_logo']) -> can('pracownik');
 
 //OGLOSZENIA
 Route::get('/ogloszenia', [OgloszeniaController::class, 'index']) -> name ('ogloszenia');

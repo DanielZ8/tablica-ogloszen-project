@@ -3,11 +3,14 @@
     <div class="panel-section">
         <h1 class="panel-section-h1">Informacje o profilu</h1>
             <a href="{{ url('/company/info-update') }}"><button class="button-global-dark">Edytuj informacje</button><a>
+            @if(!auth()->user()->photo == null)
+            <a href="{{ url('/company/logo-update') }}"><button class="button-global-dark">Zmień Logo firmy</button><a>
+            @endif
             <button class="button-global-dark">Zmień hasło</button> 
             <button class="button-global-dark">Zmień email</button> 
         <div class="panel-item">
             <h2 class="panel-item-h2">Logo firmy</h2>
-            <img class="card-img" src="{{ auth()->user()->photo}}"/>
+            <img class="card-img" src="{{ asset (auth()-> user() -> photo)}}"/>
         </div>
         <div class="panel-item">
             <h2 class="panel-item-h2">Imie</h2>
