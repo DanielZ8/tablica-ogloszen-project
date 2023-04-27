@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,47 +10,49 @@
 <body>
     <div class="main-layout">
         <div class="empty"></div>
+        <!-- HEADER-NAVBAR -->
         <header>
-            <a id="logo-link" href="{{ url('/') }}"><img class="logo-header" src="{{ asset ('img/logo-bright.png') }}"><h2 class="logo">Tablica<span class="logo-color">Ogłoszeń</span></h2></a>
-
-            <ul class="navbar">
-                <li><a href="{{ url('/ogloszenia') }}">Ogłoszenia</a></li>
-                <li><a href="{{ url('/onas') }}">O nas</a></li>
-                <li><a href="{{ url('/aktualnosci') }}">Aktualności</a></li>
-
+            <a class="nav-left" href="{{ url('/') }}">
+                <img class="nav-left-img" src="{{ asset ('img/logo-bright.png') }}">
+                <h2 class="nav-left-text">Tablica<span class="nav-left-text-color">Ogłoszeń</span></h2>
+            </a>
+            <ul class="nav-center">
+                <li><a class="nav-link" href="{{ url('/ogloszenia') }}">Ogłoszenia</a></li>
+                <li><a class="nav-link" href="{{ url('/onas') }}">O nas</a></li>
+                <li><a class="nav-link" href="{{ url('/aktualnosci') }}">Aktualności</a></li>
+                
                 @guest
-                <li><button type="button"><a href="{{ url('/login') }}">Zaloguj się</a></button></li>
-                <li><button type="button"><a href="{{ route('register') }}">Zarejestruj sie</a></button></li>
+                <li><a href="{{ url('/login') }}"><button class="nav-button-dark" type="button">Zaloguj się</button></a></li>
+                <li><a href="{{ route('register') }}"><button class="nav-button-dark" type="button">Zarejestruj sie</button></a></li>
                 @endguest
                 @auth
                 @can('pracownik')
-                <li><button type="button"><a href="{{ url('/employee') }}">Panel użytkownika</a></button></li>
+                <li><a href="{{ url('/employee') }}"><button class="nav-button-dark" type="button">Panel użytkownika</button></a></li>
                 @endcan
                 @can('firma')
-                <li><button type="button"><a href="{{ url('/company') }}">Panel użytkownika</a></button></li>
+                <li><a href="{{ url('/company') }}"><button class="nav-button-dark" type="button">Panel użytkownika</button></a></li>
                 @endcan
-                <form action="">
+                <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <li><button type="submit"><a>Wyloguj się</a></button></li>
+                    <li><a><button class="nav-button-dark" type="submit">Wyloguj się</button></a></li>
                 </form>
                 @endauth
             </ul>
-
-            <div class="main">
+            <div class="nav-right">
                 @guest
-                <a href="{{ url('/login') }}"><button type="button">Zaloguj się</button></a>
-                <a href="{{ route('register') }}"><button type="button">Zarejestruj się</button></a>
+                <li><a href="{{ url('/login') }}"><button class="nav-button-bright" type="button">Zaloguj się</button></a></li>
+                <li><a href="{{ route('register') }}"><button class="nav-button-bright" type="button">Zarejestruj sie</button></a></li>
                 @endguest
                 @auth
                 @can('pracownik')
-                <a href="{{ url('/employee') }}"><button type="button">Panel użytkownika</button></a>
+                <li><a href="{{ url('/employee') }}"><button class="nav-button-bright" type="button">Panel użytkownika</button></a></li>
                 @endcan
                 @can('firma')
-                <a href="{{ url('/company') }}"><button type="button">Panel użytkownika</button></a>
+                <li><a href="{{ url('/company') }}"><button class="nav-button-bright" type="button">Panel użytkownika</button></a></li>
                 @endcan
-                <form  action="{{ route('logout') }}" method="post">
+                <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <a><button type="submit">Wyloguj się</button></a>
+                    <li><a><button class="nav-button-bright" type="submit">Wyloguj się</button></a></li>
                 </form>
                 @endauth
                 <div class="hamburger">

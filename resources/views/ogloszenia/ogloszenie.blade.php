@@ -1,57 +1,57 @@
 @extends('layouts.layout')
 @section('content')
     <div class="ads-main-container">
-        <div id="sidebar">
-            <h1>Wyszukaj ogłoszenia</h1>
-            <form action="{{ route('search_ogloszenia') }}" class="sidebar-form" method="GET">
-                <input class="form-item" type="search" placeholder="Słowo klucz" name="search">
-                <select class="form-item" name="kategoria">
+        <div class="sidebar-container">
+            <h1 class="form-global-title">Wyszukaj ogłoszenia</h1>
+            <form action="{{ route('search_ogloszenia') }}" class="form-global" method="GET">
+                <input class="form-global-item" type="search" placeholder="Słowo klucz" name="search">
+                <select class="form-global-item" name="kategoria">
                     <option value="">Kategoria</option>
                     <option value="Java">Java</option>
                     <option value="Python">Python</option>
                     <option value="PHP">PHP</option>
                     <option value="CPP">CPP(C++)</option>
                 </select>
-                <input class="form-item" type="number" placeholder="Stawka od" name="stawka">
-                <input class="form-item" type="text" placeholder="Lokalizacja" name="lokalizacja">
-                <button type="submit">Wyszukaj</button>
+                <input class="form-global-item" type="number" placeholder="Stawka od" name="stawka">
+                <input class="form-global-item" type="text" placeholder="Lokalizacja" name="lokalizacja">
+                <button class="button-global-dark" type="submit">Wyszukaj</button>
             </form>
         </div>
-        <main class="content3">
-            <div class="ad-offer">
-                <div class="ad-offer-item1">
-                    <img class="ad-offer-img" src="{{ $ogloszenie -> user -> photo}}"/>
-                    <h2 class="ad-offer-title">{{$ogloszenie -> user -> nazwa_firmy }} - {{$ogloszenie -> naglowek}}</h2>
+        <main class="panel-card-container">
+            <div class="panel-card-wrapper">
+                <div class="panel-card-big-header">
+                    <img src="{{ $ogloszenie -> user -> photo}}"/>
+                    <h1>{{$ogloszenie -> user -> nazwa_firmy }} - {{$ogloszenie -> naglowek}}</h1>
                 </div>
-                <div class="ad-offer-item2">
-                    <p class="ad-offer-category"><img src="{{ asset ('img/'.$ogloszenie -> kategoria  .'.png') }}"/>{{ $ogloszenie -> kategoria}}</p>
-                    <p class="ad-offer-salary"><img src="{{asset ('img/cash.png')}}"/>{{ $ogloszenie -> stawka}}zł/miesiąc</p>
-                    <p class="ad-offer-location"><img src="{{asset ('img/location.png')}}"/>{{ $ogloszenie -> lokalizacja}}</p>
+                <div class="panel-card-items">
+                    <p><img src="{{ asset ('img/'.$ogloszenie -> kategoria  .'.png') }}"/>{{ $ogloszenie -> kategoria}}</p>
+                    <p><img src="{{asset ('img/cash.png')}}"/>{{ $ogloszenie -> stawka}}zł/miesiąc</p>
+                    <p><img src="{{asset ('img/location.png')}}"/>{{ $ogloszenie -> lokalizacja}}</p>
                 </div>
-                <div class="ad-offer-item4">
-                    <h3>Wymagania</h3>
-                    <p class="ad-offer-requirements">- {{$ogloszenie -> wymagania}}</p>
-                    <p class="ad-offer-requirements">- {{$ogloszenie -> wymagania}}</p>
-                    <p class="ad-offer-requirements">- {{$ogloszenie -> wymagania}}</p>
+                <div class="panel-card-section">
+                    <h3 class="panel-card-section-title">Wymagania</h3>
+                    <p class="panel-card-section-p bold">- {{$ogloszenie -> wymagania}}</p>
+                    <p class="panel-card-section-p bold">- {{$ogloszenie -> wymagania}}</p>
+                    <p class="panel-card-section-p bold">- {{$ogloszenie -> wymagania}}</p>
                 </div>
-                <div class="ad-offer-item3">
-                    <h3>Opis</h3>
-                    <p class="ad-offer-description">
+                <div class="panel-card-section">
+                    <h3 class="panel-card-section-title">Opis</h3>
+                    <p class="panel-card-section-p">
                     {{ $ogloszenie -> opis}}
                     </p>
                 </div>
                 @guest
-                <div class="ad-offer-item5">
-                    <h3>Aby wysłać zgłoszenie zaloguj lub zarejestruj się!</h3> 
+                <div class="panel-card-section dark">
+                    <h3 class="panel-card-section-title title-white">Aby wysłać zgłoszenie zaloguj lub zarejestruj się!</h3> 
                 </div>
                 @endguest
                 @auth
                 @can('pracownik')
-                <div class="ad-offer-item5">
-                    <h3>Wyślij zgłoszenie</h3>
-                    <form class="ad-offer-form">
+                <div class="panel-card-section dark">
+                    <h3 class="panel-card-section-title title-white">Wyślij zgłoszenie</h3>
+                    <form class="card-inside-form">
                         <textarea placeholder="Napisz wiadmość do pracodawcy..."></textarea>
-                        <button type="submit" onclick="alert('Tu będzie funckja aplikowania')">Aplikuj</button>
+                        <button class="button-global-bright" type="submit" onclick="alert('Tu będzie funckja aplikowania')">Aplikuj</button>
                     </form> 
                 </div>
                 @endcan

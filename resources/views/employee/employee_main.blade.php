@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="company-main-container">
-        <div class="company-nav">
+    <div class="panel-main-container">
+        <div class="panel-nav">
             <a href="#"><h1>Panel Użytkownika</h1></a>
-            <a href="{{ url('/employee') }}"><div class="company-nav-item">Informacje o profilu</div></a>
+            <a href="{{ url('/employee') }}"><div div class="panel-nav-item">Informacje o profilu</div></a>
         </div>
-        <div class="company-content">
+        <div class="panel-content">
             @yield('employee_item')
         </div>
     </div>

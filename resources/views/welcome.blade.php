@@ -1,11 +1,12 @@
 @extends('layouts.layout')
 @section('content')
-        <div class="index-main-container">
-            <div id="hero">
+        <!-- WELCOME-MAIN-CONTAINER -->
+        <div class="welcome-main-container">
+            <div class="hero">
                 <img src="img/logo-bright.png" alt="logo-design">
                 <div class="hero-wrapper">
-                    <h1>Tablica <span>Ogłoszeń</span></h1>
-                    <a href="{{ url('/ogloszenia') }}"><button type="button">Przeglądaj oferty</button></a>
+                    <h1>Tablica<span>Ogłoszeń</span></h1>
+                    <a href="{{ route('ogloszenia') }}"><button class="button-global-bright" type="button">Przeglądaj oferty</button></a>
                 </div>
             </div>
             <main class="content">

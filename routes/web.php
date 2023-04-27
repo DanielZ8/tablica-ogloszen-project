@@ -49,6 +49,10 @@ Route::get('/company/add', function () {
 
 Route::post('/company/add', [OgloszeniaController::class, 'store']) -> can('firma'); 
 
+Route::get('/company/info-update', function () {
+    return view('company/company_info_update');
+})-> can('firma');
+
 Route::get('/company/active', [CompanyPanelController::class, 'index']) -> name ('active') -> can('firma');
 
 Route::get('/company/zgloszenia', function () {
