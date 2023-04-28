@@ -22,4 +22,9 @@ class Ogloszenia extends Model
     {
         return $this -> belongsTo(User::class);
     }
+
+    public function zgloszenia() //relacja z userem
+    {
+        return $this -> hasOne(Zgloszenia::class);
+    }
 }

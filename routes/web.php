@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OgloszeniaController;
+use App\Http\Controllers\ZgloszeniaController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -58,7 +59,7 @@ Route::post('/company/logo-update', [PanelController::class, 'store_logo']) -> c
 
 Route::get('/company/active', [PanelController::class, 'index']) -> name ('active') -> can('firma');
 
-Route::get('/company/zgloszenia', [PanelController::class, 'index_company_zgloszenia']) -> name ('company_zgloszenia') -> can('firma');
+Route::get('/company/zgloszenia', [PanelController::class, 'index_zgloszenia']) -> name ('company_zgloszenia') -> can('firma');
 
 
 //EMPLOYEE_PANEL
@@ -74,10 +75,13 @@ Route::post('/employee/info-update', [PanelController::class, 'store']) -> name(
 Route::get('/employee/logo-update', [PanelController::class, 'index_logo_update']) -> name('employee-logo-update') -> can('pracownik');
 Route::post('/employee/logo-update', [PanelController::class, 'store_logo']) -> can('pracownik');
 
+Route::get('/employee/zgloszenia', [PanelController::class, 'index_zgloszenia']) -> name ('employee_zgloszenia') -> can('pracownik');
+
 //OGLOSZENIA
 Route::get('/ogloszenia', [OgloszeniaController::class, 'index']) -> name ('ogloszenia');
 Route::get('/ogloszenia/search', [OgloszeniaController::class, 'search']) -> name ('search_ogloszenia');
 Route::get('/ogloszenie/{id}', [OgloszeniaController::class, 'show']) -> name ('ogloszenie');
+Route::post('/ogloszenie/{id}', [ZgloszeniaController::class, 'store']);
 
 
 //AKTUALNOSCI

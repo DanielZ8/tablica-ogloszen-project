@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Ogloszenia;
 use App\Models\User;
+use App\Models\Zgloszenia;
 
 class PanelController extends Controller
 {
@@ -46,20 +47,45 @@ class PanelController extends Controller
         }
     }
 
-    public function index_company_zgloszenia()
+    public function index_zgloszenia()
     {
-        if (auth()->user()->photo == null 
-        || auth()->user()->nazwa_firmy == null 
-        || auth()->user()->imie == null 
-        || auth()->user()->nazwisko == null 
-        || auth()->user()->opis == null)
+        if(auth()->user()->rola == 'pracownik')
         {
-            return redirect('company/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            if (auth()->user()->photo == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('employee/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::where('nadawca_id', '=', auth()->user()->id)->latest()->paginate(10);
+                return view('employee\employee_zgloszenia',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
         }
         else
         {
-            return view ('company\company_zgloszenia');
+            if (auth()->user()->photo == null 
+            || auth()->user()->nazwa_firmy == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('company/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::with('user')->where('odbiorca_id', '=', auth()->user()->id)->latest()->paginate(10);
+                
+                return view('company\company_zgloszenia',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
         }
+        
     }
 
     public function index_logo_update()

@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ogloszenia::class);
     }
+
+    public function zgloszenia()
+    {
+        return $this->hasMany(Zgloszenia::class);
+    }
 }

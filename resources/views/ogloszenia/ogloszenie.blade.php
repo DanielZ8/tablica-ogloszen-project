@@ -49,9 +49,12 @@
                 @can('pracownik')
                 <div class="panel-card-section dark">
                     <h3 class="panel-card-section-title title-white">Wyślij zgłoszenie</h3>
-                    <form class="card-inside-form">
-                        <textarea placeholder="Napisz wiadmość do pracodawcy..."></textarea>
-                        <button class="button-global-bright" type="submit" onclick="alert('Tu będzie funckja aplikowania')">Aplikuj</button>
+                    <form class="card-inside-form" action="{{ route('ogloszenie', $ogloszenie -> id) }}" method="post">
+                        @csrf
+                        <input name="ogloszenie_id" type="hidden" value="{{$ogloszenie -> id}}">
+                        <input name="odbiorca_id" type="hidden" value="{{$ogloszenie -> user-> id}}">
+                        <textarea placeholder="Napisz wiadmość do pracodawcy..." name="wiadomosc"></textarea>
+                        <button class="button-global-bright" type="submit">Aplikuj</button>
                     </form> 
                 </div>
                 @endcan

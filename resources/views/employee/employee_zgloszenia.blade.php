@@ -1,25 +1,18 @@
-@extends('company.company_main')
-@section('company_item')
+@extends('employee.employee_main')
+@section('employee_item')
     <div class="panel-section">
         <h1 class="panel-section-h1">Zgłoszenia</h1>
         <div class="panel-item">
             <h2 class="panel-item-h2">Nowe zgłoszenia</h2>
-            @if ($zgloszenia -> count())
-                @foreach($zgloszenia as $zgloszenie)
-                <a href="single-ad.html" class="card">
-                    <div class="span-card-img"><img class="card-img" src="{{ asset('img/employee2.png') }}"/></div>
-                    <div class="card-wrapper">
-                        <h2 class="card-title">{{ $zgloszenie -> imie}}</h2>
-                        <p class="card-item bold">37 lat</p>
-                        <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>Kraków</p>
-                        <p class="card-item">Dzień dobry, jestem zainteresowany państwa ogłoszeniem o pracę</p>
-                    </div>
-                </a>
-               @endforeach
-               {{$zgloszenia ->links("pagination::semantic-ui")}}  
-            @else
-                <h1 class="panel-section-h1">Brak oczekujących zgłoszeń</h1>
-            @endif
+            <a href="single-ad.html" class="card">
+                <div class="span-card-img"><img class="card-img" src="{{ asset('img/employee2.png') }}"/></div>
+                <div class="card-wrapper">
+                    <h2 class="card-title">Marian Kowalski</h2>
+                    <p class="card-item bold">37 lat</p>
+                    <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>Kraków</p>
+                    <p class="card-item">Dzień dobry, jestem zainteresowany państwa ogłoszeniem o pracę</p>
+                </div>
+            </a>
         </div>
         <div class="panel-item">
             <h2 class="panel-item-h2">Przyjęte zgłoszenia</h2>
