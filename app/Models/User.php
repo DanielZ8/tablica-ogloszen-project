@@ -53,8 +53,13 @@ class User extends Authenticatable
         return $this->hasMany(Ogloszenia::class);
     }
 
-    public function zgloszenia()
+    public function nadawca()
     {
-        return $this->hasMany(Zgloszenia::class);
+        return $this->hasMany(Zgloszenia::class, 'nadawca_id', 'id');
+    }
+
+    public function odbiorca()
+    {
+        return $this->hasMany(Zgloszenia::class, 'odbiorca_id', 'id');
     }
 }

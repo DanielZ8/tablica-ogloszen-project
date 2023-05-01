@@ -25,6 +25,6 @@ class Ogloszenia extends Model
 
     public function zgloszenia() //relacja z userem
     {
-        return $this -> hasOne(Zgloszenia::class);
+        return $this -> hasMany(Zgloszenia::class);
     }
 }

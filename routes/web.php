@@ -60,6 +60,9 @@ Route::post('/company/logo-update', [PanelController::class, 'store_logo']) -> c
 Route::get('/company/active', [PanelController::class, 'index']) -> name ('active') -> can('firma');
 
 Route::get('/company/zgloszenia', [PanelController::class, 'index_zgloszenia']) -> name ('company_zgloszenia') -> can('firma');
+Route::get('/company/zgloszenia/oczekujace', [PanelController::class, 'index_zgloszenia_oczekujace']) -> name ('company_zgloszenia_oczekujace') -> can('firma');
+Route::get('/company/zgloszenia/zaakceptowane', [PanelController::class, 'index_zgloszenia_zaakceptowane']) -> name ('company_zgloszenia_zaakceptowane') -> can('firma');
+Route::get('/company/zgloszenia/odrzucone', [PanelController::class, 'index_zgloszenia_odrzucone']) -> name ('company_zgloszenia_odrzucone') -> can('firma');
 
 
 //EMPLOYEE_PANEL
@@ -93,3 +96,8 @@ Route::get('/aktualnosci', function () {
 Route::get('/onas', function () {
     return view('onas');
 });
+
+
+//ZGLOSZENIE
+Route::get('/zgloszenie/{id}', [ZgloszeniaController::class, 'show']) -> name ('zgloszenie');
+Route::post('/zgloszenie/{id}', [ZgloszeniaController::class, 'update']);

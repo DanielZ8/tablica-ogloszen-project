@@ -54,9 +54,9 @@
             @enderror
             <div class="panel-item">
                 <h2 class="panel-item-h2">Wiek</h2>
-                <input class="form-global-item" type="text" placeholder="Podaj swój wiek" name="wiek">
+                <input class="form-global-item" type="text" placeholder="Podaj swój wiek" name="wiek" value="{{ auth()->user()->wiek }}">
             </div>
-            @error('stawka')
+            @error('wiek')
                     <p style="color: red;">{{ $message }}</p>
             @enderror
             <div class="panel-item">

@@ -2,48 +2,55 @@
 @section('company_item')
     <div class="panel-section">
         <h1 class="panel-section-h1">Zgłoszenia</h1>
+        <a href="{{ url('/company/zgloszenia/oczekujace') }}"><button class="button-global-dark">Oczekujące</button><a>
+        <a href="{{ url('/company/zgloszenia/zaakceptowane') }}"><button class="button-global-dark">Zaakceptowane</button><a>
+        <a href="{{ url('/company/zgloszenia/odrzucone') }}"><button class="button-global-dark">Odrzucone</button><a>
         <div class="panel-item">
-            <h2 class="panel-item-h2">Nowe zgłoszenia</h2>
+            <h2 class="panel-item-h2">Wszystkie zgłoszenia</h2>
             @if ($zgloszenia -> count())
                 @foreach($zgloszenia as $zgloszenie)
-                <a href="single-ad.html" class="card">
-                    <div class="span-card-img"><img class="card-img" src="{{ asset('img/employee2.png') }}"/></div>
+                @if ($zgloszenie -> status == "oczekujace")
+                <a href="{{ route('zgloszenie', $zgloszenie -> id) }}" class="card">
+                    <div class="span-card-img"><img class="card-img" src="{{ asset ($zgloszenie-> nadawca -> photo)}}"/></div>
                     <div class="card-wrapper">
-                        <h2 class="card-title">{{ $zgloszenie -> imie}}</h2>
-                        <p class="card-item bold">37 lat</p>
+                        <h2 class="card-title">{{$zgloszenie -> nadawca-> imie}} {{$zgloszenie -> nadawca-> nazwisko}}</h2>
+                        <p class="card-item bold">(Oczekujące)</p>
+                        <p class="card-item bold">{{$zgloszenie -> nadawca-> wiek}} lat</p>
                         <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>Kraków</p>
-                        <p class="card-item">Dzień dobry, jestem zainteresowany państwa ogłoszeniem o pracę</p>
+                        <p class="card-item">Data zgłoszenia: {{$zgloszenie -> nadawca-> created_at}}</p>
+                        <p class="card-item">{{$zgloszenie -> nadawca-> opis}}</p>
                     </div>
                 </a>
+                @elseif ($zgloszenie -> status == "zaakceptowane")
+                <a href="{{ route('zgloszenie', $zgloszenie -> id) }}" class="card ad-accepted">
+                    <div class="span-card-img"><img class="card-img" src="{{ asset ($zgloszenie-> nadawca -> photo)}}"/></div>
+                    <div class="card-wrapper">
+                        <h2 class="card-title">{{$zgloszenie -> nadawca-> imie}} {{$zgloszenie -> nadawca-> nazwisko}}</h2>
+                        <p class="card-item bold">(Zaakceptowane)</p>
+                        <p class="card-item bold">{{$zgloszenie -> nadawca-> wiek}} lat</p>
+                        <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>Kraków</p>
+                        <p class="card-item">Data zgłoszenia: {{$zgloszenie -> nadawca-> created_at}}</p>
+                        <p class="card-item">{{$zgloszenie -> nadawca-> opis}}</p>
+                    </div>
+                </a>
+                @else ($zgloszenie -> status == "odrzucone")
+                <a href="{{ route('zgloszenie', $zgloszenie -> id) }}" class="card ad-denied">
+                    <div class="span-card-img"><img class="card-img" src="{{ asset ($zgloszenie-> nadawca -> photo)}}"/></div>
+                    <div class="card-wrapper">
+                        <h2 class="card-title">{{$zgloszenie -> nadawca-> imie}} {{$zgloszenie -> nadawca-> nazwisko}}</h2>
+                        <p class="card-item bold">(Odrzucone)</p>
+                        <p class="card-item bold">{{$zgloszenie -> nadawca-> wiek}} lat</p>
+                        <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>Kraków</p>
+                        <p class="card-item">Data zgłoszenia: {{$zgloszenie -> nadawca-> created_at}}</p>
+                        <p class="card-item">{{$zgloszenie -> nadawca-> opis}}</p>
+                    </div>
+                </a>
+                @endif
                @endforeach
                {{$zgloszenia ->links("pagination::semantic-ui")}}  
             @else
-                <h1 class="panel-section-h1">Brak oczekujących zgłoszeń</h1>
+                <h3>Brak zgłoszeń</h3>
             @endif
-        </div>
-        <div class="panel-item">
-            <h2 class="panel-item-h2">Przyjęte zgłoszenia</h2>
-            <a href="single-ad.html" class="card ad-accepted">
-                <div class="span-card-img"><img class="card-img" src="{{ asset('img/employee3.png') }}"/></div>
-                <div class="card-wrapper">
-                    <h2 class="card-title">Krystian Malinowski</h2>
-                    <p class="card-item bold">29 lat</p>
-                    <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>Warszawa</p>
-                    <p class="card-item">Dzień dobry, jestem zainteresowany państwa ogłoszeniem o pracę</p>
-                </div>
-            </a>
-        </div>
-        <div class="panel-item">
-            <h2 class="panel-item-h2">Odrzucone zgłoszenia</h2>
-            <a href="single-ad.html" class="card ad-denied">
-                <div class="span-job-offer-img"><img class="card-img" src="{{ asset('img/employee1.png') }}"/></div>
-                <div class="card-wrapper">
-                    <h2 class="card-title">Łukasz Kubiszyn</h2>
-                    <p class="card-item bold">23 lat</p>
-                    <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>Przemyśl</p>
-                    <p class="card-item">Dzień dobry, jestem studentem</p>
-                </div>
-            </a>
         </div>
     </div>
 @endsection

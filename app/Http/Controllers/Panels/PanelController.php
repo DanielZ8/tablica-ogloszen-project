@@ -78,9 +78,138 @@ class PanelController extends Controller
             }
             else
             {
-                $zgloszenia = Zgloszenia::with('user')->where('odbiorca_id', '=', auth()->user()->id)->latest()->paginate(10);
+                $zgloszenia = Zgloszenia::where('odbiorca_id', '=', auth()->user()->id)->latest()->paginate(10);
                 
                 return view('company\company_zgloszenia',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
+        }
+        
+    }
+
+    public function index_zgloszenia_oczekujace()
+    {
+        if(auth()->user()->rola == 'pracownik')
+        {
+            if (auth()->user()->photo == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('employee/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::where('nadawca_id', '=', auth()->user()->id)->latest()->paginate(10);
+                return view('employee\employee_zgloszenia',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
+        }
+        else
+        {
+            if (auth()->user()->photo == null 
+            || auth()->user()->nazwa_firmy == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('company/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::where('odbiorca_id', '=', auth()->user()->id)
+                ->where('status', '=', 'oczekujace')
+                ->latest()->paginate(10);
+                
+                return view('company\company_zgloszenia_oczekujace',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
+        }
+        
+    }
+
+    public function index_zgloszenia_zaakceptowane()
+    {
+        if(auth()->user()->rola == 'pracownik')
+        {
+            if (auth()->user()->photo == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('employee/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::where('nadawca_id', '=', auth()->user()->id)->latest()->paginate(10);
+                return view('employee\employee_zgloszenia',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
+        }
+        else
+        {
+            if (auth()->user()->photo == null 
+            || auth()->user()->nazwa_firmy == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('company/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::where('odbiorca_id', '=', auth()->user()->id)
+                ->where('status', '=', 'zaakceptowane')
+                ->latest()->paginate(10);
+                
+                return view('company\company_zgloszenia_zaakceptowane',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
+        }
+        
+    }
+
+    public function index_zgloszenia_odrzucone()
+    {
+        if(auth()->user()->rola == 'pracownik')
+        {
+            if (auth()->user()->photo == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('employee/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::where('nadawca_id', '=', auth()->user()->id)->latest()->paginate(10);
+                return view('employee\employee_zgloszenia',[
+                'zgloszenia' => $zgloszenia
+                ]);
+            }
+        }
+        else
+        {
+            if (auth()->user()->photo == null 
+            || auth()->user()->nazwa_firmy == null 
+            || auth()->user()->imie == null 
+            || auth()->user()->nazwisko == null 
+            || auth()->user()->opis == null)
+            {
+                return redirect('company/info-update')->with('error_zgloszenia', 'Aby móc przeglądać i odpowiadać na zgłoszenia uzupełnij profil!');
+            }
+            else
+            {
+                $zgloszenia = Zgloszenia::where('odbiorca_id', '=', auth()->user()->id)
+                ->where('status', '=', 'odrzucone')
+                ->latest()->paginate(10);
+                
+                return view('company\company_zgloszenia_odrzucone',[
                 'zgloszenia' => $zgloszenia
                 ]);
             }

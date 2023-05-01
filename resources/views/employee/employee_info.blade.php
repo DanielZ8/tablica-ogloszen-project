@@ -10,23 +10,51 @@
             <button class="button-global-dark">Zmień email</button> 
         <div class="panel-item">
             <h2 class="panel-item-h2">Avatar</h2>
+            @if(auth()->user()->photo == null)
+            <p class="panel-item-p">Brak avataru</p>
+            @else
             <img class="card-img" src="{{ asset (auth()-> user() -> photo)}}"/>
+            @endif
         </div>
         <div class="panel-item">
             <h2 class="panel-item-h2">Imie</h2>
-            <p class="panel-item-p">{{ auth()->user()->imie }}</p>
+            <p class="panel-item-p">
+                @if (auth()->user()->imie == null) 
+                Brak informacji 
+                @else 
+                {{ auth()->user()->imie }} 
+                @endif
+            </p>
         </div>
         <div class="panel-item">
             <h2 class="panel-item-h2">Nazwisko</h2>
-            <p class="panel-item-p">{{ auth()->user()->nazwisko }}</p>
+            <p class="panel-item-p">
+                @if (auth()->user()->nazwisko == null) 
+                Brak informacji 
+                @else 
+                {{ auth()->user()->nazwisko }} 
+                @endif
+            </p>
         </div>
         <div class="panel-item">
             <h2 class="panel-item-h2">Mail kontaktowy</h2>
-            <p class="panel-item-p">{{ auth()->user()->email }}</p>
+            <p class="panel-item-p">
+                @if (auth()->user()->email == null) 
+                Brak informacji 
+                @else 
+                {{ auth()->user()->email }} 
+                @endif
+            </p>
         </div>
         <div class="panel-item">
             <h2 class="panel-item-h2">Informacje ogólne</h2>
-            <p class="panel-item-p">{{ auth()->user()->opis }}</p>
+            <p class="panel-item-p">
+                @if (auth()->user()->opis == null) 
+                Brak informacji 
+                @else 
+                {{ auth()->user()->opis }} 
+                @endif
+            </p>
         </div>
     </div>
 @endsection

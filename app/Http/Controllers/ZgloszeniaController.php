@@ -35,4 +35,29 @@ class ZgloszeniaController extends Controller
         return redirect('employee/info-update')->with('success', 'Ogloszenie dodano pomyślnie!');
         }
     }
+
+    public function show($id)
+    {
+        $zgloszenie = Zgloszenia::find($id);
+
+       return view('zgloszenie', [
+            'zgloszenie' => $zgloszenie
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+         $formFields = $request->validate([
+            'wiadomosc_zwrotna' => 'required',
+         ]);
+         
+        $zgloszenie = Zgloszenia::find((int)$request->zgloszenie_id);
+       
+        $zgloszenie->wiadomosc_zwrotna = $request->wiadomosc_zwrotna;
+        $zgloszenie->status = $request->status;
+        $zgloszenie->update(); 
+
+        return redirect('ogloszenia')->with('success', 'Ogloszenie dodano pomyślnie!');
+        
+    }
 }

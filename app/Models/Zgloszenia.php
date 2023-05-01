@@ -18,13 +18,19 @@ class Zgloszenia extends Model
         'status',
     ];
 
-    public function user() //relacja z userem
+    public function nadawca() //relacja z userem
     {
-        return $this -> belongsTo(User::class);
+        return $this->belongsTo(User::class, 'nadawca_id', 'id');
     }
 
-    public function ogloszenia() //relacja z ogloszeniem
+    public function odbiorca() //relacja z userem
     {
-        return $this -> belongsTo(Ogloszenia::class);
+        return $this->belongsTo(User::class, 'odbiorca_id', 'id');
+    }
+
+
+    public function ogloszenie() //relacja z ogloszeniem
+    {
+        return $this -> belongsTo(Ogloszenia::class, 'ogloszenie_id', 'id');
     }
 }
