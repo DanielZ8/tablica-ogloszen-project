@@ -16,7 +16,7 @@
         <form action="{{ route('employee-logo-update') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="panel-item">
-                <h2 class="panel-item-h2">Wybierz plik z logo</h2>
+                <h2 class="panel-item-h2">Wybierz plik z avatarem</h2>
                 <input type="file" class="logo_upload" name="logo" value="auth()->user()->photo">
             </div>
             @error('logo')

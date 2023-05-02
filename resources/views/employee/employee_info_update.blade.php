@@ -31,7 +31,7 @@
             @endif
             @if (auth()->user()->photo == null)
             <div class="panel-item">
-                <h2 class="panel-item-h2">Logo firmy</h2>
+                <h2 class="panel-item-h2">Avatar</h2>
                 <input type="file" class="logo_upload" name="logo" value="auth()->user()->photo">
             </div>
             @endif

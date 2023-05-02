@@ -19,6 +19,14 @@
   --color8: #949494;
   --color9: rgba(11, 19, 43, 0.54);
   --color10: rgb(243, 243, 243, 0.7);
+  --color11: #d4d4d4;
+  --oczekujace: #eebe00;
+  --zaakceptowane: #339900;
+  --odrzucone: 	#cc3300;
+  --oczekujace-background: #fff1bb;
+  --zaakceptowane-background: #cae7c9;
+  --odrzucone-background: #f1d0ce;
+  --message-darker: #dfdfdf;
 
   
   --main-radius: 12px;
@@ -71,6 +79,18 @@ body{
 }
 
 /* ---------------------- GLOBAL ---------------------- */
+
+.oczekujace{
+  color: var(--oczekujace);
+}
+
+.zaakceptowane{
+  color: var(--zaakceptowane);
+}
+
+.odrzucone{
+  color: var(--odrzucone);
+}
 .button-global-bright{
   padding: 12px 30px;
   margin: 10px;
@@ -104,6 +124,19 @@ body{
   color: var(--color5);
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.message-darker
+{
+  background-color: var(--message-darker) !important;
+}
+
+.accept-button{
+  background-color: #88e485;
+}
+
+.deny-button{
+  background-color: #eb8c87;
 }
 
 /* ---------------------- GLOBAL-END ---------------------- */
@@ -403,7 +436,7 @@ header{
 }
 
 .card:hover{
-  background-color: rgb(202, 202, 202);
+  background-color: var(--color11);
 }
 
 .card-title {
@@ -694,16 +727,33 @@ header{
   background-color: var(--color0);
 }
 
+.ad-waiting{
+  background-color: var(--oczekujace-background) !important; 
+}
+
 .ad-accepted{
-  background-color: #b1ebaf !important; 
+  background-color: var(--zaakceptowane-background)!important; 
 }
 
 .ad-denied{
-  background-color: #ebb1af !important; 
+  background-color: var(--odrzucone-background) !important; 
 }
 
 /* ---------------------- PANEL-MAIN-CONTAINER-END ---------------------- */
 
+/* ---------------------- ZGLOSZENIE-MAIN-CONTAINER ---------------------- */
+.zgloszenie-main-container {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 1fr 0.2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "n main main n1"
+    "n main main n1";
+  grid-gap: 0.2rem;
+}
+
+
+/* ---------------------- ZGLOSZENIE-MAIN-CONTAINER ---------------------- */
 
 /* ---------------------- FOOTER ---------------------- */
 footer {
@@ -863,6 +913,17 @@ footer p{
     padding: 0px;
   }
   /* ---------------------- ADS_MAIN_CONTAINER-END ---------------------- */
+  /* ---------------------- ZGLOSZENIE-MAIN-CONTAINER ---------------------- */
+  .zgloszenie-main-container {
+    display: grid;
+    grid-template-columns: 0fr 1fr 1fr 0fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "n main main n1"
+      "n main main n1";
+    
+  }
+/* ---------------------- ZGLOSZENIE-MAIN-CONTAINER ---------------------- */
 
 }
 /* ---------- HEADER-HIDE-ITEMS ---------- */

@@ -79,6 +79,11 @@ Route::get('/employee/logo-update', [PanelController::class, 'index_logo_update'
 Route::post('/employee/logo-update', [PanelController::class, 'store_logo']) -> can('pracownik');
 
 Route::get('/employee/zgloszenia', [PanelController::class, 'index_zgloszenia']) -> name ('employee_zgloszenia') -> can('pracownik');
+Route::get('/employee/zgloszenia/oczekujace', [PanelController::class, 'index_zgloszenia_oczekujace']) -> name ('employee_zgloszenia_oczekujace') -> can('pracownik');
+Route::get('/employee/zgloszenia/zaakceptowane', [PanelController::class, 'index_zgloszenia_zaakceptowane']) -> name ('employee_zgloszenia_zaakceptowane') -> can('pracownik');
+Route::get('/employee/zgloszenia/odrzucone', [PanelController::class, 'index_zgloszenia_odrzucone']) -> name ('employee_zgloszenia_odrzucone') -> can('pracownik');
+
+
 
 //OGLOSZENIA
 Route::get('/ogloszenia', [OgloszeniaController::class, 'index']) -> name ('ogloszenia');

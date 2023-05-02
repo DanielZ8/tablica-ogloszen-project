@@ -1,27 +1,21 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="ads-main-container">
-        <div class="sidebar-container">
-            <h1 class="form-global-title">Wyszukaj ogłoszenia</h1>
-            <form action="{{ route('search_ogloszenia') }}" class="form-global" method="GET">
-                <input class="form-global-item" type="search" placeholder="Słowo klucz" name="search">
-                <select class="form-global-item" name="kategoria">
-                    <option value="">Kategoria</option>
-                    <option value="Java">Java</option>
-                    <option value="Python">Python</option>
-                    <option value="PHP">PHP</option>
-                    <option value="CPP">CPP(C++)</option>
-                </select>
-                <input class="form-global-item" type="number" placeholder="Stawka od" name="stawka">
-                <input class="form-global-item" type="text" placeholder="Lokalizacja" name="lokalizacja">
-                <button class="button-global-dark" type="submit">Wyszukaj</button>
-            </form>
-        </div>
+    <div class="zgloszenie-main-container">
+        @if (auth()-> user()->id == $zgloszenie -> nadawca_id OR auth()-> user()->id == $zgloszenie -> odbiorca_id )
         <main class="panel-card-container">
         <div class="panel-card-wrapper">
             <div class="panel-card-big-header">
                 <img src="{{ asset ($zgloszenie -> nadawca -> photo)}}"/>
-                <h1>{{$zgloszenie -> nadawca -> imie }} - {{$zgloszenie -> nadawca -> nazwisko}}</h1>
+                <h1>{{$zgloszenie -> nadawca -> imie }} {{$zgloszenie -> nadawca -> nazwisko}}
+                    @if($zgloszenie -> status == "oczekujace")
+                    <span class ="oczekujace">(OCZEKUJĄCE)</span>
+                    @elseif ($zgloszenie -> status == "zaakceptowane")
+                    <span class ="zaakceptowane">(ZAAKCEPTOWANE)</span>
+                    @elseif ($zgloszenie -> status == "odrzucone")
+                    <span class ="odrzucone">(ODRZUCONE)</span>
+                    @endif
+                    
+                </h1>
             </div>
             <div class="panel-card-section">
                 <h3 class="panel-card-section-title">Informacje</h3>
@@ -35,21 +29,7 @@
                 </p>
             </div>
             <div class="panel-card-section">
-                <h3 class="panel-card-section-title">Wiadomość</h3>
-                <p class="panel-card-section-p">
-                {{ $zgloszenie -> wiadomosc}}
-                </p>
-            </div>
-            @if (!$zgloszenie -> wiadomosc_zwrotna == null)
-            <div class="panel-card-section">
-                <h3 class="panel-card-section-title">Wiadomość zwrotna</h3>
-                <p class="panel-card-section-p">
-                {{ $zgloszenie -> wiadomosc_zwrotna}}
-                </p>
-            </div>
-            @endif
-            <div class="panel-card-section">
-            <h2 class="panel-item-h2">Powiązane ogłoszenie</h2>
+            <h2 class="panel-item-h2">Aplikuje na ogłoszenie</h2>
                 <a href="{{ route('ogloszenie', $zgloszenie -> ogloszenie -> id) }} " class="card">
                     <div class="span-card-img"><img class="card-img" src="{{ asset ($zgloszenie-> ogloszenie -> user -> photo)}}"/></div>
                     <div class="card-wrapper">
@@ -61,6 +41,31 @@
                     </div>
                 </a>
             </div>
+            @if($zgloszenie -> status == "oczekujace")
+            <div class="panel-card-section ad-waiting">
+            @else
+            <div class="panel-card-section message-darker">
+            @endif
+                <h3 class="panel-card-section-title">Wiadomość do pracodawcy</h3>
+                <p class="panel-card-section-p bold">{{$zgloszenie -> nadawca -> imie}} {{$zgloszenie -> nadawca -> nazwisko}}:<p>
+                <p class="panel-card-section-p">
+                {{ $zgloszenie -> wiadomosc}}
+                </p>
+            </div>
+            @if (!$zgloszenie -> wiadomosc_zwrotna == null)
+            @if($zgloszenie -> status == "odrzucone")
+            <div class="panel-card-section ad-denied">
+            @else
+            <div class="panel-card-section ad-accepted">
+            @endif
+                <h3 class="panel-card-section-title">Wiadomość zwrotna</h3>
+                <p class="panel-card-section-p bold">{{$zgloszenie -> odbiorca -> imie}} {{$zgloszenie -> odbiorca -> nazwisko}} (Przedstawiciel firmy):<p>
+                <p class="panel-card-section-p">
+                {{ $zgloszenie -> wiadomosc_zwrotna}}
+                </p>
+            </div>
+            @endif
+            @can('firma')
             @if ($zgloszenie -> wiadomosc_zwrotna == null)
             <div class="panel-card-section dark">
                 <h3 class="panel-card-section-title title-white">Wyślij zgłoszenie</h3>
@@ -68,13 +73,17 @@
                     @csrf
                     <input name="zgloszenie_id" type="hidden" value="{{$zgloszenie -> id}}">
                     <textarea placeholder="Napisz wiadmość do pracodawcy..." name="wiadomosc_zwrotna"></textarea>
-                    <button class="button-global-bright" type="submit" name="status" value="zaakceptowane">Zaakceptuj</button>
-                    <button class="button-global-bright" type="submit" name="status" value="odrzucone">Odrzuć</button>
+                    <button class="button-global-bright accept-button" type="submit" name="status" value="zaakceptowane">Zaakceptuj</button>
+                    <button class="button-global-bright deny-button" type="submit" name="status" value="odrzucone">Odrzuć</button>
                 </form> 
             </div>
             @endif
+            @endcan
         </div>
         <main>
+        @else
+        
+        @endif
     </div>
 @endsection
 

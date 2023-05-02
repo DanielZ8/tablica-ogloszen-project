@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Zgloszenia;
+use Illuminate\Support\Facades\Auth;
 
 class ZgloszeniaController extends Controller
 {
@@ -32,7 +33,7 @@ class ZgloszeniaController extends Controller
         $zgloszenie->status = "oczekujace";
         $zgloszenie->save(); 
 
-        return redirect('employee/info-update')->with('success', 'Ogloszenie dodano pomyślnie!');
+        return redirect('employee/zgloszenia')->with('success', 'Zgłoszenie wysłano pomyślnie!');
         }
     }
 
@@ -40,9 +41,21 @@ class ZgloszeniaController extends Controller
     {
         $zgloszenie = Zgloszenia::find($id);
 
-       return view('zgloszenie', [
-            'zgloszenie' => $zgloszenie
-        ]);
+        if($zgloszenie == !null AND Auth::user())
+            if($zgloszenie -> odbiorca_id == auth()->user()->id || $zgloszenie -> nadawca_id == auth()->user()->id )
+            {
+                return view('zgloszenie', [
+                    'zgloszenie' => $zgloszenie
+                ]);
+            }
+            else
+            {
+                return redirect('ogloszenia');
+            }
+        else
+        {
+            return redirect('ogloszenia');
+        }
     }
 
     public function update(Request $request)
@@ -57,7 +70,7 @@ class ZgloszeniaController extends Controller
         $zgloszenie->status = $request->status;
         $zgloszenie->update(); 
 
-        return redirect('ogloszenia')->with('success', 'Ogloszenie dodano pomyślnie!');
+        return redirect('company/zgloszenia')->with('success', 'Odpowiedź przesłana pomyślnie!');
         
     }
 }
