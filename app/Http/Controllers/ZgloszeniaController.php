@@ -15,7 +15,7 @@ class ZgloszeniaController extends Controller
         || auth()->user()->nazwisko == null 
         || auth()->user()->opis == null)
         {
-            return redirect('employee/info-update')->with('error_add', 'Aby móc aplikowac uzupełnij profil!');
+            return redirect('employee/info-update')->with('error_add', 'Aby móc aplikować uzupełnij profil!');
         }
         else
         {

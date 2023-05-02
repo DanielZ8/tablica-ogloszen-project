@@ -5,12 +5,8 @@
         <a href="{{ url('/company/zgloszenia/oczekujace') }}"><button class="button-global-dark">Oczekujące</button><a>
         <a href="{{ url('/company/zgloszenia/zaakceptowane') }}"><button class="button-global-dark">Zaakceptowane</button><a>
         <a href="{{ url('/company/zgloszenia/odrzucone') }}"><button class="button-global-dark">Odrzucone</button><a>
-        @if (\Session::has('success'))
-            <div class="alert alert-success">
-                <ul>
-                    <li style="color: green;">{!! \Session::get('success') !!}</li>
-                </ul>
-            </div>
+        @if (\Session::has('success')) 
+            <div class="success-alert">{!! \Session::get('success') !!}</div>   
         @endif
         <div class="panel-item">
             <h2 class="panel-item-h2">Wszystkie zgłoszenia</h2>

@@ -6,11 +6,11 @@
             <form class="form-global" action="{{ route('register') }}" method="post">
                 @csrf
                 @error('email')
-                    <p style="color: red; margin:0; padding: 0;">{{ $message }}</p>
+                    <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input class="form-global-item" type="email" placeholder="Email" name="email" value="{{ old('email') }}">
                 @error('password')
-                    <p style="color: red; margin:0; padding: 0;">{{ $message }}</p>
+                    <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input class="form-global-item" type="password" placeholder="Hasło" name="password">
                 <input class="form-global-item" type="password" placeholder="Powtórz hasło" name="password_confirmation">

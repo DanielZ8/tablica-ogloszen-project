@@ -67,8 +67,11 @@
             @endif
             @can('firma')
             @if ($zgloszenie -> wiadomosc_zwrotna == null)
+            @error('wiadomosc_zwrotna')
+                <p class="error-alert">{{ $message }}</p>
+            @enderror
             <div class="panel-card-section dark">
-                <h3 class="panel-card-section-title title-white">Wyślij zgłoszenie</h3>
+                <h3 class="panel-card-section-title title-white">Wiadomość zwrotna</h3>
                 <form class="card-inside-form" action="{{ route('zgloszenie', $zgloszenie -> id) }}" method="post">
                     @csrf
                     <input name="zgloszenie_id" type="hidden" value="{{$zgloszenie -> id}}">

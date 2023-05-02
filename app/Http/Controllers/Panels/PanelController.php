@@ -242,7 +242,7 @@ class PanelController extends Controller
     public function store_logo(Request $request)
     {
         $formFields = $request->validate([
-            'logo' => 'required',
+            'logo' => 'required|image',
         ]);
          
         $user = User::find(auth()->user()->id);
@@ -270,19 +270,19 @@ class PanelController extends Controller
             if(auth()->user()->photo == null)
             {
                 $formFields = $request->validate([
-                    'logo' => 'required',
+                    'logo' => 'required|image',
                     'imie' => 'required',
                     'nazwisko' => 'required',
-                    'wiek' => 'required',
+                    'wiek' => 'required|numeric',
                     'opis' => 'required',
                 ]);
             }
             else
             {
                 $formFields = $request->validate([
-                    'imie' => 'required',
+                    'imie' => 'required|image',
                     'nazwisko' => 'required',
-                    'wiek' => 'required',
+                    'wiek' => 'required|numeric',
                     'opis' => 'required',
                 ]);
             }
@@ -313,7 +313,7 @@ class PanelController extends Controller
             if(auth()->user()->photo == null)
             {
                 $formFields = $request->validate([
-                    'logo' => 'required',
+                    'logo' => 'required|image',
                     'nazwa_firmy' => 'required',
                     'imie' => 'required',
                     'nazwisko' => 'required',

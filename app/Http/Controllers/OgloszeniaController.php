@@ -38,7 +38,7 @@ class OgloszeniaController extends Controller
          $formFields = $request->validate([
             'naglowek' => 'required',
             'kategoria' => 'required',
-            'stawka' => 'required',
+            'stawka' => 'required|numeric',
             'lokalizacja' => 'required',
             'wymagania' => 'required',
             'opis' => 'required',

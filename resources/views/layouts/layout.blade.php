@@ -22,38 +22,38 @@
                 <li><a class="nav-link" href="{{ url('/aktualnosci') }}">Aktualności</a></li>
                 
                 @guest
-                <li><a href="{{ url('/login') }}"><button class="nav-button-dark" type="button">Zaloguj się</button></a></li>
-                <li><a href="{{ route('register') }}"><button class="nav-button-dark" type="button">Zarejestruj sie</button></a></li>
+                    <li><a href="{{ url('/login') }}"><button class="nav-button-dark" type="button">Zaloguj się</button></a></li>
+                    <li><a href="{{ route('register') }}"><button class="nav-button-dark" type="button">Zarejestruj sie</button></a></li>
                 @endguest
                 @auth
                 @can('pracownik')
-                <li><a href="{{ url('/employee') }}"><button class="nav-button-dark" type="button">Panel użytkownika</button></a></li>
+                    <li><a href="{{ url('/employee') }}"><button class="nav-button-dark" type="button">Panel użytkownika</button></a></li>
                 @endcan
                 @can('firma')
-                <li><a href="{{ url('/company') }}"><button class="nav-button-dark" type="button">Panel użytkownika</button></a></li>
+                    <li><a href="{{ url('/company') }}"><button class="nav-button-dark" type="button">Panel użytkownika</button></a></li>
                 @endcan
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <li><a><button class="nav-button-dark" type="submit">Wyloguj się</button></a></li>
-                </form>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <li><a><button class="nav-button-dark" type="submit">Wyloguj się</button></a></li>
+                    </form>
                 @endauth
             </ul>
             <div class="nav-right">
                 @guest
-                <li><a href="{{ url('/login') }}"><button class="nav-button-bright" type="button">Zaloguj się</button></a></li>
-                <li><a href="{{ route('register') }}"><button class="nav-button-bright" type="button">Zarejestruj sie</button></a></li>
+                    <li><a href="{{ url('/login') }}"><button class="nav-button-bright" type="button">Zaloguj się</button></a></li>
+                    <li><a href="{{ route('register') }}"><button class="nav-button-bright" type="button">Zarejestruj sie</button></a></li>
                 @endguest
                 @auth
                 @can('pracownik')
-                <li><a href="{{ url('/employee') }}"><button class="nav-button-bright" type="button">Panel użytkownika</button></a></li>
+                    <li><a href="{{ url('/employee') }}"><button class="nav-button-bright" type="button">Panel użytkownika</button></a></li>
                 @endcan
                 @can('firma')
-                <li><a href="{{ url('/company') }}"><button class="nav-button-bright" type="button">Panel użytkownika</button></a></li>
+                    <li><a href="{{ url('/company') }}"><button class="nav-button-bright" type="button">Panel użytkownika</button></a></li>
                 @endcan
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <li><a><button class="nav-button-bright" type="submit">Wyloguj się</button></a></li>
-                </form>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <li><a><button class="nav-button-bright" type="submit">Wyloguj się</button></a></li>
+                    </form>
                 @endauth
                 <div class="hamburger">
                     <div></div>

@@ -8,64 +8,55 @@
         @endif
         <form action="{{ route('company-info-update') }}" method="post" enctype="multipart/form-data">
             @csrf
-            @if (\Session::has('success'))
-                <div class="alert alert-success">
-                    <ul>
-                        <li style="color: green;">{!! \Session::get('success') !!}</li>
-                    </ul>
-                </div>
+            @if (\Session::has('success')) 
+                <div class="success-alert">{!! \Session::get('success') !!}</div>   
             @endif
             @if (\Session::has('error_add'))
-                <div class="alert alert-error">
-                    <ul>
-                        <li style="color: red;">{!! \Session::get('error_add') !!}</li>
-                    </ul>
-                </div>
+                <div class="error-alert">{!! \Session::get('error_add') !!}</div>
             @endif
             @if (\Session::has('error_zgloszenia'))
-                <div class="alert alert-error">
-                    <ul>
-                        <li style="color: red;">{!! \Session::get('error_zgloszenia') !!}</li>
-                    </ul>
-                </div>
+                <div class="error-alert">{!! \Session::get('error_zgloszenia') !!}</div>
             @endif
             @if (auth()->user()->photo == null)
             <div class="panel-item">
                 <h2 class="panel-item-h2">Logo firmy</h2>
-                <input type="file" class="logo_upload" name="logo" value="auth()->user()->photo">
+                <div class="logo_wrapper">
+                    <label for="files" class="logo_label">Zalecane równe proporcje obrazka (np. 800px x 800px)</label>
+                    <input type="file" class="logo_upload" name="logo" value="auth()->user()->photo">
+                </div>
+                @error('logo')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             @endif
-            @error('logo')
-                    <p style="color: red;">{{ $message }}</p>
-            @enderror
             <div class="panel-item">
                 <h2 class="panel-item-h2">Nazwa firmy</h2>
                 <input class="form-global-item" type="text" placeholder="Wpisz nazwę firmy" name="nazwa_firmy" value="{{ auth()->user()->nazwa_firmy }}">
+                @error('nazwa_firmy')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
-            @error('nazwa_firmy')
-                    <p style="color: red;">{{ $message }}</p>
-            @enderror
             <div class="panel-item">
                 <h2 class="panel-item-h2">Imię przedstawiciela firmy</h2>
                 <input class="form-global-item" type="text" placeholder="Wpisz imię" name="imie" value="{{ auth()->user()->imie }}">
+                @error('imie')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
-            @error('imie')
-                    <p style="color: red;">{{ $message }}</p>
-            @enderror
             <div class="panel-item">
                 <h2 class="panel-item-h2">Nazwisko przedstawiciela firmy</h2>
                 <input class="form-global-item" type="text" placeholder="Wpisz nazwisko" name="nazwisko" value="{{ auth()->user()->nazwisko }}">
+                @error('nazwisko')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
-            @error('nazwisko')
-                    <p style="color: red;">{{ $message }}</p>
-            @enderror
             <div class="panel-item">
                 <h2 class="panel-item-h2">Opis firmy (będzie widoczny na ogłoszeniu)</h2>
                 <textarea placeholder="Opis" name="opis">{{ auth()->user()->opis }}</textarea>
+                @error('opis')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
-            @error('opis')
-                    <p style="color: red;">{{ $message }}</p>
-            @enderror
             <button class="button-global-dark" type="submit">Zatwierdź</button>
         </form>
     </div>

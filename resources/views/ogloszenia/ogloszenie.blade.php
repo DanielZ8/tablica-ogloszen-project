@@ -29,34 +29,41 @@
                     <p><img src="{{asset ('img/location.png')}}"/>{{ $ogloszenie -> lokalizacja}}</p>
                 </div>
                 <div class="panel-card-section">
-                    <h3 class="panel-card-section-title">Wymagania</h3>
-                    <p class="panel-card-section-p bold">- {{$ogloszenie -> wymagania}}</p>
-                    <p class="panel-card-section-p bold">- {{$ogloszenie -> wymagania}}</p>
-                    <p class="panel-card-section-p bold">- {{$ogloszenie -> wymagania}}</p>
+                    <h3 class="panel-card-section-title">Opis firmy</h3>
+                    <p class="panel-card-section-p">
+                    {{ $ogloszenie -> user -> opis}}
+                    </p>
                 </div>
                 <div class="panel-card-section">
-                    <h3 class="panel-card-section-title">Opis</h3>
+                    <h3 class="panel-card-section-title">Wymagania</h3>
+                    <p class="panel-card-section-p bold">{{$ogloszenie -> wymagania}}</p>
+                </div>
+                <div class="panel-card-section">
+                    <h3 class="panel-card-section-title">Opis ogłoszenia</h3>
                     <p class="panel-card-section-p">
                     {{ $ogloszenie -> opis}}
                     </p>
                 </div>
                 @guest
-                <div class="panel-card-section dark">
-                    <h3 class="panel-card-section-title title-white">Aby wysłać zgłoszenie zaloguj lub zarejestruj się!</h3> 
-                </div>
+                    <div class="panel-card-section dark">
+                        <h3 class="panel-card-section-title title-white">Aby wysłać zgłoszenie zaloguj lub zarejestruj się!</h3> 
+                    </div>
                 @endguest
                 @auth
                 @can('pracownik')
-                <div class="panel-card-section dark">
-                    <h3 class="panel-card-section-title title-white">Wyślij zgłoszenie</h3>
-                    <form class="card-inside-form" action="{{ route('ogloszenie', $ogloszenie -> id) }}" method="post">
-                        @csrf
-                        <input name="ogloszenie_id" type="hidden" value="{{$ogloszenie -> id}}">
-                        <input name="odbiorca_id" type="hidden" value="{{$ogloszenie -> user-> id}}">
-                        <textarea placeholder="Napisz wiadmość do pracodawcy..." name="wiadomosc"></textarea>
-                        <button class="button-global-bright" type="submit">Aplikuj</button>
-                    </form> 
-                </div>
+                    @error('wiadomosc')
+                        <p class="error-alert">{{ $message }}</p>
+                    @enderror
+                    <div class="panel-card-section dark">
+                        <h3 class="panel-card-section-title title-white">Wyślij zgłoszenie</h3>
+                        <form class="card-inside-form" action="{{ route('ogloszenie', $ogloszenie -> id) }}" method="post">
+                            @csrf
+                            <input name="ogloszenie_id" type="hidden" value="{{$ogloszenie -> id}}">
+                            <input name="odbiorca_id" type="hidden" value="{{$ogloszenie -> user-> id}}">
+                            <textarea placeholder="Napisz wiadmość do pracodawcy..." name="wiadomosc"></textarea>
+                            <button class="button-global-bright" type="submit">Aplikuj</button>
+                        </form> 
+                    </div>
                 @endcan
                 @endauth
             </div>    

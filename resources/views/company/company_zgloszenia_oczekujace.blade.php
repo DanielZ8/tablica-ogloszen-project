@@ -9,7 +9,7 @@
             <h2 class="panel-item-h2">Oczekujące zgłoszenia</h2>
             @if ($zgloszenia -> count())
                 @foreach($zgloszenia as $zgloszenie)
-                <a href="{{ route('zgloszenie', $zgloszenie -> id) }}" class="card">
+                <a href="{{ route('zgloszenie', $zgloszenie -> id) }}" class="card ad-waiting">
                     <div class="span-card-img"><img class="card-img" src="{{ asset ($zgloszenie-> nadawca -> photo)}}"/></div>
                     <div class="card-wrapper">
                         <h2 class="card-title">{{$zgloszenie -> nadawca-> imie}} {{$zgloszenie -> nadawca-> nazwisko}}</h2>
