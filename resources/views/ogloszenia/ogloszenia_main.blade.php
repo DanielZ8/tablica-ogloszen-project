@@ -8,10 +8,11 @@
                 <input class="form-global-item" type="search" placeholder="Słowo klucz" name="search">
                 <select class="form-global-item" name="kategoria">
                     <option value="">Kategoria</option>
-                    <option value="Java">Java</option>
-                    <option value="Python">Python</option>
-                    <option value="PHP">PHP</option>
-                    <option value="CPP">CPP(C++)</option>
+                    @if ($kategorie -> count())
+                        @foreach ($kategorie as $kategoria)
+                            <option value="{{$kategoria->nazwa}}">{{$kategoria->nazwa}}</option>
+                        @endforeach
+                    @endif
                 </select>
                 <input class="form-global-item" type="number" placeholder="Stawka od" name="stawka">
                 <input class="form-global-item" type="text" placeholder="Lokalizacja" name="lokalizacja">

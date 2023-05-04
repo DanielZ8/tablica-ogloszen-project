@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\Ogloszenia;
 use App\Models\User;
 use App\Models\Zgloszenia;
+use App\Models\Kategorie;
 
 class PanelController extends Controller
 {
@@ -43,7 +44,10 @@ class PanelController extends Controller
         }
         else
         {
-            return view ('company\company_add_ogloszenie');
+            $kategorie = Kategorie::all();
+            return view ('company\company_add_ogloszenie',[
+                'kategorie' => $kategorie
+            ]);
         }
     }
 

@@ -23,7 +23,7 @@
                @endforeach
                {{$zgloszenia ->links("pagination::semantic-ui")}}  
             @else
-                <h3>Brak zaakceptowanych</h3>
+                <h3>Brak zaakceptowanych zgłoszeń</h3>
             @endif
         </div>
     </div>

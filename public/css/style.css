@@ -19,17 +19,25 @@
   --color8: #949494;
   --color9: rgba(11, 19, 43, 0.54);
   --color10: rgb(243, 243, 243, 0.7);
-  --color11: #d4d4d4;
+  --color11: #d4d1d1;
+
   --oczekujace: #eebe00;
   --zaakceptowane: #339900;
   --odrzucone: 	#cc3300;
+  
   --warning: #eebe00;
   --success: #339900;
   --error: 	#cc0000;
+
   --oczekujace-background: #fff1bb;
   --zaakceptowane-background: #cae7c9;
   --odrzucone-background: #f1d0ce;
   --message-darker: #dfdfdf;
+
+  --oczekujace-background-hover: #fae48e;
+  --zaakceptowane-background-hover: #b0e9af;
+  --odrzucone-background-hover: #e7aba8;
+ 
 
   
   --main-radius: 12px;
@@ -82,6 +90,41 @@ body{
 }
 
 /* ---------------------- GLOBAL ---------------------- */
+.ad-waiting{
+  background-color: var(--oczekujace-background) !important; 
+}
+
+.ad-waiting-static{
+  background-color: var(--oczekujace-background) !important; 
+}
+
+.ad-waiting:hover{
+  background-color: var(--oczekujace-background-hover) !important; 
+}
+
+.ad-accepted{
+  background-color: var(--zaakceptowane-background)!important; 
+}
+
+.ad-accepted-static{
+  background-color: var(--zaakceptowane-background)!important; 
+}
+
+.ad-accepted:hover{
+  background-color: var(--zaakceptowane-background-hover)!important; 
+}
+
+.ad-denied{
+  background-color: var(--odrzucone-background) !important; 
+}
+
+.ad-denied-static{
+  background-color: var(--odrzucone-background) !important; 
+}
+
+.ad-denied:hover{
+  background-color: var(--odrzucone-background-hover) !important; 
+}
 
 .logo_upload{
   width: fit-content;
@@ -638,6 +681,7 @@ header{
   padding: 2rem;
   border-radius: 20px;
   background-color: var(--color7);
+  
 }
 
 .row-space
@@ -660,6 +704,7 @@ header{
 .panel-card-section-p{
   margin: 0.4rem;
   padding: 0;
+  white-space: pre-line;
 }
 
 
@@ -806,17 +851,6 @@ header{
   background-color: var(--color0);
 }
 
-.ad-waiting{
-  background-color: var(--oczekujace-background) !important; 
-}
-
-.ad-accepted{
-  background-color: var(--zaakceptowane-background)!important; 
-}
-
-.ad-denied{
-  background-color: var(--odrzucone-background) !important; 
-}
 
 /* ---------------------- PANEL-MAIN-CONTAINER-END ---------------------- */
 

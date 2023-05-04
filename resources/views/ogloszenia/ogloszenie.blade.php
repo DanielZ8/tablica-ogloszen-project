@@ -7,10 +7,11 @@
                 <input class="form-global-item" type="search" placeholder="Słowo klucz" name="search">
                 <select class="form-global-item" name="kategoria">
                     <option value="">Kategoria</option>
-                    <option value="Java">Java</option>
-                    <option value="Python">Python</option>
-                    <option value="PHP">PHP</option>
-                    <option value="CPP">CPP(C++)</option>
+                    @if ($kategorie -> count())
+                        @foreach ($kategorie as $kategoria)
+                            <option value="{{$kategoria->nazwa}}">{{$kategoria->nazwa}}</option>
+                        @endforeach
+                    @endif
                 </select>
                 <input class="form-global-item" type="number" placeholder="Stawka od" name="stawka">
                 <input class="form-global-item" type="text" placeholder="Lokalizacja" name="lokalizacja">
@@ -30,9 +31,7 @@
                 </div>
                 <div class="panel-card-section">
                     <h3 class="panel-card-section-title">Opis firmy</h3>
-                    <p class="panel-card-section-p">
-                    {{ $ogloszenie -> user -> opis}}
-                    </p>
+                    <p class="panel-card-section-p">{{ $ogloszenie -> user -> opis}}</p>
                 </div>
                 <div class="panel-card-section">
                     <h3 class="panel-card-section-title">Wymagania</h3>
@@ -40,9 +39,7 @@
                 </div>
                 <div class="panel-card-section">
                     <h3 class="panel-card-section-title">Opis ogłoszenia</h3>
-                    <p class="panel-card-section-p">
-                    {{ $ogloszenie -> opis}}
-                    </p>
+                    <p class="panel-card-section-p">{{ $ogloszenie -> opis}}</p>
                 </div>
                 @guest
                     <div class="panel-card-section dark">

@@ -17,10 +17,11 @@
             <div class="panel-item">
                 <h2 class="panel-item-h2">Kategoria</h2>
                 <select class="form-global-item" name="kategoria">
-                    <option value="Java">Java</option>
-                    <option value="CPP">CPP(C++)</option>
-                    <option value="PHP">PHP</option>
-                    <option value="Python">Python</option>
+                    @if ($kategorie -> count())
+                        @foreach ($kategorie as $kategoria)
+                            <option value="{{$kategoria->nazwa}}">{{$kategoria->nazwa}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
             <div class="panel-item">
@@ -39,7 +40,7 @@
             </div>
             <div class="panel-item">
                 <h2 class="panel-item-h2">Wymagania</h2>
-                <textarea placeholder="Wymagania" name="wymagania" >{{ old('wymagania') }}</textarea>
+                <textarea placeholder="Wymagania" name="wymagania">{{ old('wymagania') }}</textarea>
                 @error('wymagania')
                     <p class="error-message">{{ $message }}</p>
                 @enderror

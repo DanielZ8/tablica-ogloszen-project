@@ -24,9 +24,7 @@
             </div>
             <div class="panel-card-section">
                 <h3 class="panel-card-section-title">Opis</h3>
-                <p class="panel-card-section-p">
-                {{ $zgloszenie -> nadawca -> opis}}
-                </p>
+                <p class="panel-card-section-p">{{ $zgloszenie -> nadawca -> opis}}</p>
             </div>
             <div class="panel-card-section">
             <h2 class="panel-item-h2">Aplikuje na ogłoszenie</h2>
@@ -42,27 +40,23 @@
                 </a>
             </div>
             @if($zgloszenie -> status == "oczekujace")
-            <div class="panel-card-section ad-waiting">
+            <div class="panel-card-section ad-waiting-static">
             @else
             <div class="panel-card-section message-darker">
             @endif
                 <h3 class="panel-card-section-title">Wiadomość do pracodawcy</h3>
-                <p class="panel-card-section-p bold">{{$zgloszenie -> nadawca -> imie}} {{$zgloszenie -> nadawca -> nazwisko}}:<p>
-                <p class="panel-card-section-p">
-                {{ $zgloszenie -> wiadomosc}}
-                </p>
+                <p class="panel-card-section-p bold">{{$zgloszenie -> nadawca -> imie}}{{$zgloszenie -> nadawca -> nazwisko}}:</p>
+                <p class="panel-card-section-p">{{$zgloszenie -> wiadomosc}}</p>
             </div>
             @if (!$zgloszenie -> wiadomosc_zwrotna == null)
             @if($zgloszenie -> status == "odrzucone")
-            <div class="panel-card-section ad-denied">
+            <div class="panel-card-section ad-denied-static">
             @else
-            <div class="panel-card-section ad-accepted">
+            <div class="panel-card-section ad-accepted-static">
             @endif
                 <h3 class="panel-card-section-title">Wiadomość zwrotna</h3>
-                <p class="panel-card-section-p bold">{{$zgloszenie -> odbiorca -> imie}} {{$zgloszenie -> odbiorca -> nazwisko}} (Przedstawiciel firmy):<p>
-                <p class="panel-card-section-p">
-                {{ $zgloszenie -> wiadomosc_zwrotna}}
-                </p>
+                <p class="panel-card-section-p bold">{{$zgloszenie -> odbiorca -> imie}} {{$zgloszenie -> odbiorca -> nazwisko}} (Przedstawiciel firmy):</p>
+                <p class="panel-card-section-p">{{ $zgloszenie -> wiadomosc_zwrotna}}</p>
             </div>
             @endif
             @can('firma')

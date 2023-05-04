@@ -4,23 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ogloszenia;
+use App\Models\Kategorie;
 
 class OgloszeniaController extends Controller
 {
     public function index()
     {
         $ogloszenia = Ogloszenia::latest()->paginate(10);
+        $kategorie = Kategorie::all();
         return view('ogloszenia/ogloszenia_main',[
-            'ogloszenia' => $ogloszenia
+            'ogloszenia' => $ogloszenia,
+            'kategorie' => $kategorie
         ]);
     }
 
     public function show($id)
     {
         $ogloszenie = Ogloszenia::find($id);
+        $kategorie = Kategorie::all();
 
        return view('ogloszenia.ogloszenie', [
-            'ogloszenie' => $ogloszenie
+            'ogloszenie' => $ogloszenie,
+            'kategorie' => $kategorie
         ]);
     }
     public function store(Request $request)
@@ -61,6 +66,7 @@ class OgloszeniaController extends Controller
 
     public function search(Request $request)
     {
+        $kategorie = Kategorie::all();
         $ogloszenia = Ogloszenia::
         where(function($query) use($request){
             $query->orwhere('naglowek', 'LIKE', '%'.$request->search.'%') #wyszukuje kawalki stringow
@@ -75,7 +81,8 @@ class OgloszeniaController extends Controller
         ->latest()
         ->paginate(10);
         return view('ogloszenia/ogloszenia_main',[
-            'ogloszenia' => $ogloszenia
+            'ogloszenia' => $ogloszenia,
+            'kategorie' => $kategorie
         ]);
     }
 }
