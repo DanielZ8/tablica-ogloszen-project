@@ -37,7 +37,7 @@
                 @endforeach
                 {{$ogloszenia ->links("pagination::semantic-ui")}}  
             @else
-                <h1>Brak ogłoszeń</h1>
+                <h1 style="color:#f3f3f3;">Brak ogłoszeń</h1>
             @endif
         </main>
     </div>

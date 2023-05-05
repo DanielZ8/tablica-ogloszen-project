@@ -23,6 +23,9 @@
                         @endforeach
                     @endif
                 </select>
+                @error('kategoria')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
             <div class="panel-item">
                 <h2 class="panel-item-h2">Stawka miesięczna</h2>
