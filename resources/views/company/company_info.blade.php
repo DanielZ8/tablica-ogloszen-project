@@ -6,8 +6,11 @@
             @if(!auth()->user()->photo == null)
                 <a href="{{ url('/company/logo-update') }}"><button class="button-global-dark">Zmień Logo firmy</button><a>
             @endif
-            <button class="button-global-dark">Zmień hasło</button> 
-            <button class="button-global-dark">Zmień email</button> 
+            <a href="{{ route('change_password') }}"><button class="button-global-dark">Zmień hasło</button><a>
+            <a href="{{ route('change_email') }}"><button class="button-global-dark">Zmień email</button><a>
+            @if (\Session::has('success')) 
+                <div class="success-alert">{!! \Session::get('success') !!}</div>   
+            @endif
         <div class="panel-item">
             <h2 class="panel-item-h2">Logo firmy</h2>
             @if(auth()->user()->photo == null)

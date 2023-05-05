@@ -5,6 +5,9 @@
             <h1 class="form-global-title">Zarejestruj się</h1>
             <form class="form-global" action="{{ route('register') }}" method="post">
                 @csrf
+                @if (\Session::has('error')) 
+                <div class="error-alert">{!! \Session::get('error') !!}</div>   
+                @endif
                 @error('email')
                     <p class="error-message">{{ $message }}</p>
                 @enderror

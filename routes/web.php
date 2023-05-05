@@ -106,3 +106,10 @@ Route::get('/onas', function () {
 //ZGLOSZENIE
 Route::get('/zgloszenie/{id}', [ZgloszeniaController::class, 'show']) -> name ('zgloszenie');
 Route::post('/zgloszenie/{id}', [ZgloszeniaController::class, 'update']);
+
+//ZMIANA_DANYCH
+Route::get('/change-password', [RegisterController::class, 'change_password_index'])->name ('change_password');
+Route::post('/change-password', [RegisterController::class, 'change_password']);
+
+Route::get('/change-email', [RegisterController::class, 'change_email_index'])->name ('change_email');
+Route::post('/change-email', [RegisterController::class, 'change_email']);
