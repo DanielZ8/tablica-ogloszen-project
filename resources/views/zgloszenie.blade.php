@@ -35,7 +35,7 @@
                         <p class="card-item bold"><img src="{{ asset('img/'.$zgloszenie->ogloszenie->kategoria.'.png') }}"/>{{ $zgloszenie ->ogloszenie -> kategoria}}</p>
                         <p class="card-item bold"><img src="{{ asset('img/cash.png') }}"/>{{ $zgloszenie ->ogloszenie -> stawka}}zł/miesiąc</p>
                         <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>{{ $zgloszenie ->ogloszenie -> lokalizacja}}</p>
-                        <p class="card-item">{{ $zgloszenie ->ogloszenie -> opis}}</p>
+                        <p class="card-item">{!! Str::limit($zgloszenie->ogloszenie -> opis, 160, '...') !!}</p>
                     </div>
                 </a>
             </div>

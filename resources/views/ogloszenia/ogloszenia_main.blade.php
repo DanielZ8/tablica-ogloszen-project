@@ -31,7 +31,7 @@
                             <p class="card-item bold"><img src="{{ asset('img/'.$ogloszenie->kategoria.'.png') }}"/>{{ $ogloszenie -> kategoria}}</p>
                             <p class="card-item bold"><img src="{{ asset('img/cash.png') }}"/>{{ $ogloszenie -> stawka}}zł/miesiąc</p>
                             <p class="card-item bold"><img src="{{ asset('img/location.png') }}"/>{{ $ogloszenie -> lokalizacja}}</p>
-                            <p class="card-item">{{ $ogloszenie -> opis}}</p>
+                            <p class="card-item">{!! Str::limit($ogloszenie -> opis, 160, '...') !!}</p>
                         </div>
                     </a>
                 @endforeach

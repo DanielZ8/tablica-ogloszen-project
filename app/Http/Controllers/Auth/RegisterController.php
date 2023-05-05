@@ -51,7 +51,7 @@ class RegisterController extends Controller
     {
       if(Auth::user())
       {
-        return view('change_password');
+        return view('auth/change_password');
       }
       else
       {
@@ -93,7 +93,7 @@ class RegisterController extends Controller
     {
       if(Auth::user())
       {
-        return view('change_email');
+        return view('auth/change_email');
       }
       else
       {
