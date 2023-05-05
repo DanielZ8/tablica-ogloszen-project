@@ -9,6 +9,8 @@ use App\Models\Ogloszenia;
 use App\Models\User;
 use App\Models\Zgloszenia;
 use App\Models\Kategorie;
+use Illuminate\Support\Facades\File; 
+
 
 class PanelController extends Controller
 {
@@ -248,12 +250,16 @@ class PanelController extends Controller
         $formFields = $request->validate([
             'logo' => 'required|image',
         ]);
-         
+
+
+        $current_photo = auth()->user()->photo;
+
         $user = User::find(auth()->user()->id);
         $image_name = date('mdYHis').uniqid().$request->file('logo')->getClientOriginalName();
         $request->file('logo')->storeAs('public/avatars', $image_name);
         $user->photo = 'storage/avatars/'.$image_name;
         $user->update(); 
+        File::delete($current_photo);
 
         if(auth()->user()->rola == 'pracownik')
         {
