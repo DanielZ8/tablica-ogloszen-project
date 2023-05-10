@@ -11,6 +11,9 @@
             @if (\Session::has('success')) 
                 <div class="success-alert">{!! \Session::get('success') !!}</div>   
             @endif
+            @if (\Session::has('error'))
+                <div class="error-alert">{!! \Session::get('error') !!}</div>
+            @endif
         <div class="panel-item">
             <h2 class="panel-item-h2">Logo firmy</h2>
             @if(auth()->user()->photo == null)

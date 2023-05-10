@@ -90,6 +90,9 @@ Route::get('/ogloszenia', [OgloszeniaController::class, 'index']) -> name ('oglo
 Route::get('/ogloszenia/search', [OgloszeniaController::class, 'search']) -> name ('search_ogloszenia');
 Route::get('/ogloszenie/{id}', [OgloszeniaController::class, 'show']) -> name ('ogloszenie');
 Route::post('/ogloszenie/{id}', [ZgloszeniaController::class, 'store']);
+Route::get('/company/edit-ogloszenie', [OgloszeniaController::class, 'index_edit_ogloszenie']) -> name('company-edit-ogloszenie') -> can('firma');
+Route::post('/company/edit-ogloszenie', [OgloszeniaController::class, 'edit_ogloszenie']) -> name('company-edit-ogloszenie') -> can('firma');
+Route::post('/company/delete', [OgloszeniaController::class, 'delete_ogloszenie']) -> name('company-delete-ogloszenie') -> can('firma');
 
 
 //AKTUALNOSCI

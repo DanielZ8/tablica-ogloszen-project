@@ -24,6 +24,21 @@
                     <img src="{{ asset ($ogloszenie -> user -> photo)}}"/>
                     <h1>{{$ogloszenie -> user -> nazwa_firmy }} - {{$ogloszenie -> naglowek}}</h1>
                 </div>
+                @can('firma')
+                @if(auth()->user()->id == $ogloszenie->user->id)
+                <div class="panel-card-items">
+                    <form action="{{ url('/company/edit-ogloszenie') }}" method="get">
+                        <input name="ogloszenie_id" type="hidden" value="{{$ogloszenie -> id}}">
+                        <button class="button-global-bright ad-waiting" type="submit" style="margin-right: 3px;">Edytuj</button>
+                    </form>
+                    <form action="{{ url('/company/delete') }}" method="post">
+                        @csrf
+                        <input name="ogloszenie_id" type="hidden" value="{{$ogloszenie -> id}}">
+                        <button class="button-global-bright deny-button" type="submit" style="margin-right: 3px;">Usuń</button>
+                    </form>
+                </div>
+                @endif
+                @endcan
                 <div class="panel-card-items">
                     <p><img src="{{ asset ('img/'.$ogloszenie -> kategoria  .'.png') }}"/>{{ $ogloszenie -> kategoria}}</p>
                     <p><img src="{{asset ('img/cash.png')}}"/>{{ $ogloszenie -> stawka}}zł/miesiąc</p>
