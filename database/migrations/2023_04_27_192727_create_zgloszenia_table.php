@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('nadawca_id')->nullable();
             $table->unsignedBigInteger('odbiorca_id')->nullable();
             $table->unsignedBigInteger('ogloszenie_id')->nullable();
-            $table->text('wiadomosc')->nullable();
-            $table->text('wiadomosc_zwrotna')->nullable();
+            $table->longText('wiadomosc')->nullable();
+            $table->longText('wiadomosc_zwrotna')->nullable();
             $table->text('status')->nullable();
             $table->timestamps();
 

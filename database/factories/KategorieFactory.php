@@ -16,7 +16,7 @@ class KategorieFactory extends Factory
      */
     public function definition(): array
     {
-        static $kat = ['Python', 'Java', 'CPP', 'PHP'];
+        static $kat = ['Python', 'Java', 'CPP', 'PHP', 'JS', 'HTML', 'CSS'];
         static $number = 0;
         return [
             'nazwa' => $kat[$number++],

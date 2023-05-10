@@ -70,8 +70,10 @@
                     @csrf
                     <input name="zgloszenie_id" type="hidden" value="{{$zgloszenie -> id}}">
                     <textarea placeholder="Napisz wiadmość do pracodawcy..." name="wiadomosc_zwrotna"></textarea>
-                    <button class="button-global-bright accept-button" type="submit" name="status" value="zaakceptowane">Zaakceptuj</button>
-                    <button class="button-global-bright deny-button" type="submit" name="status" value="odrzucone">Odrzuć</button>
+                    <div class="btn-wrapper">
+                    <button class="button-global-bright accept-button" type="submit" name="status" value="zaakceptowane" style="margin-right: 3px;">Zaakceptuj</button>
+                    <button class="button-global-bright deny-button" type="submit" name="status" value="odrzucone" style="margin-left: 3px;">Odrzuć</button>
+                    </div>
                 </form> 
             </div>
             @endif

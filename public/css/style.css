@@ -1169,10 +1169,6 @@ footer p{
     align-items: center;
   }
 
-  .card-inside-form textarea{
-    /**/
-  }
-
   .card-inside-form button{
     justify-self: center ;
     width: 11rem;

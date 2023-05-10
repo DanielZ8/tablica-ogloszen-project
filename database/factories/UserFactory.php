@@ -31,16 +31,26 @@ class UserFactory extends Factory
             'NOVACURA POLAND sp. z o.o.', 'Nokia', 'TRUMPF Huettinger Sp. z o.o.', 'Dolfi 1920 Sp. z. o.o.', 
             'Sieć Badawcza Łukasiewicz – Instytut Lotnictwa', '6CONNEX INTERNATIONAL', 'ITFS sp. z o.o.', 
             'Antal IT Sales/ Tech', 'Cloud Services Sp. z o.o.'];
+
+            static $opis =[
+                'Firma specjalizująca się w tworzeniu i wdrażaniu kompleksowych systemów informatycznych dedykowanych dla firm z sektora telekomunikacyjnego poszukuje do pracy na stanowisku: Młodszy programista .NET (Junior .NET Developer).',
+                'We are a global leader of iLottery solutions and services to the national and state-regulated lotteries.
+                We empower our customers to create the most successful iLottery programs with a complete solution that includes industry-leading omnichannel platforms, an innovative portfolio of the best-performing interactive games, and a full suite of business and technology services.  ',
+                'Jesteśmy bankiem cyfrowym. Nasi specjaliści IT tworzą rozwiązania, z których korzystają miliony użytkowników. Projektują i rozwijają nowoczesne aplikacje dla każdego z obszarów naszej działalności, stanowiąc technologiczne DNA banku.',
+                'Jesteśmy polską firmą programistyczną specjalizującą się w tworzeniu aplikacji webowych i mobilnych. Tworzymy rozwiązania dla klientów z całego świata. Na rynku działamy od 2012 roku. Dołącz już dziś do najlepszego Software Houseu w Polsce!'
+            ]; 
+
+            static $path = 'img/logo (';
         return [
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'photo' => fake()->imageUrl(400, 400),
+            'photo' => $path.fake()->numberBetween(1,18).').svg',
             'rola' => 'firma',
             'imie' => fake() -> Firstname(),
             'nazwisko' => fake() ->lastName(),
             'wiek' => fake() -> numberBetween(22, 60),
-            'opis' => fake() -> sentence(),
+            'opis' => $opis[fake()->numberBetween(0,3)],
             'nazwa_firmy' => $firmy[fake()->numberBetween(0,38)], 
             'remember_token' => Str::random(10),
         ];

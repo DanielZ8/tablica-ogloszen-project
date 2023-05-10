@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('imie')->nullable();;
             $table->string('nazwisko')->nullable();;
             $table->integer('wiek')->nullable();;
-            $table->string('opis')->nullable();;
+            $table->longText('opis')->nullable();;
             $table->string('nazwa_firmy')->nullable();;
             $table->rememberToken();
             $table->timestamps();

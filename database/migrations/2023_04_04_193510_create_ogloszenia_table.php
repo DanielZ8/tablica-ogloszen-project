@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('kategoria');
             $table->integer('stawka');
             $table->text('lokalizacja');
-            $table->text('wymagania');
-            $table->text('opis');
+            $table->longText('wymagania');
+            $table->longText('opis');
             $table->text('status');
             $table->timestamps();
         });
